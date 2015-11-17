@@ -1,0 +1,29 @@
+# Inputfile  for SayPerm RTE_test, permutaion synthesis
+# Permuts the phases of 7 F's labeled by "1" in the first column and generates
+# a Fourier map for each F-set. The maps can be found in files A.grd - P.grd.
+# Though some data are not necessary for the fourier map calculation, please
+# keep them in the list, otherwise the program does'nt work ... Sorry, dirty programming style
+#
+#
+# ExpFileName     RTE 
+ UnitCell        14.098 13.670 7.431 90.000 102.421 90.000
+ SpaceGroup      C2/m
+# 
+ GridDimension   24 24 16 1  1  1   
+#
+ MaxRvalue       50.0 50.0 50.0
+ Fscale          0.431
+ TempFac         2.0 
+ PseudoAtom      2.0
+ ChemicalComp    Si 1 O 2
+ PermCode        permsynth 
+ End
+# 
+ 0	 0   0   0    720.00	  0.0
+ 1	 1   1   0    421.103	  0.0
+ 1	 0   0   1    217.007	  0.0
+ 1	 2   0   0    272.476	  0.0
+ 1	 0   2   0    307.766	  0.0
+ 1	 1   1  -1    390.415	  0.0
+ 1	 0   2   1    323.793	  0.0
+ 1	 2   2   0    138.311	  0.0

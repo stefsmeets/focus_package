@@ -1,0 +1,44 @@
+SgInfo->Chiral
+PrintMathMRTMx()
+CmpEigenVectors()
+T_TabXtalRotMx->CarHex,ShTrMx
+-Characterize
+-Harker
+SgInfo->n_ss_Vector, SgInfo->ss_Vector, SgInfo->ss_Modulus,
+  Set_ss(), Is_ss(), Changed for compatibility with notation in
+                     ITVB, 1993, page 201
+T_ssVM, SgInfo->n_ssVM, SgInfo->ssVM
+
+int GetRotMxInfo(const int *RotMx, T_RotMxInfo *RotMxInfo, int *ShTrMx);
+int nNextBasis_of_DirCode(const int DirCode,
+                          const int **RMx, const int **InvRMx);
+const T_TabSgName *FindTabPgNameEntry(const char *UserLbl);
+const char *RTMx2XYZ(const T_RTMx *RTMx, int FacRo, int FacTr,
+                     int Decimal, int TrFirst, int Low,
+                     const char *Separator,
+                     char *BufferXYZ, int SizeBufferXYZ);
+sgharker.c
+sgutil.c
+sghkl.c & T_Eq_hkl
+sgvers.c
+Bug in TabSgName: wrong P_42_1_2, correct P_4_21_2
+see also: Save/sginfo-changes
+
+
+sginfo -listtable | awk '/^   1 /, /^ 230 /' | awk '{ print "sginfo -Characterize " $1 }'
+
+
+#define MarkTabXtalMatrices
+grep '^@(' $1 | cut -d' ' -f2-8 | sort | uniq | sort +3n | grep -v ' (0 0 0)$'
+
+
+sginfo -ListTable | awk '/^   1 /, /^ 230 /' | awk '{ print "sginfo -Harker " $1 }' > zi
+sh zi > zo
+awk '/^Unique Harker Vectors/, /^$/' zo > zh
+grep '[12]D  \[' zh | cut -c34- | sed 's/\]  *\[.*/]/' | sort | uniq
+
+
+T={{t0,t1,t2},{t3,t4,t5},{t6,t7,t8}}
+Mw={{w0,w1,w2},{w3,w4,w5},{w6,w7,w8}}
+Mi={{i0,i1,i2},{i3,i4,i5},{i6,i7,i8}}
+MatrixForm[Mw.T-T.Mi]

@@ -1,0 +1,265 @@
+ ------------------------------------------------------------------------
+
+
+
+   DLS-76-02        *** EXAMPLE 1 :  ALPO4  ***  SPACE GROUP P3(1)21                         DATE: 4-APR-02       PAGE   1
+
+
+
+
+ PROGRAM SPECIFICATIONS
+ ----------------------
+
+    REFINEMENT        MATRIX          RANDOM        CONST DIST     CONST  RATIO   PRESCRIBED DO        CELL
+       TYPE         INVERSION       COORDINATES     REFINEMENT      REFINEMENT      ADJUSTMENT      REFINEMENT
+
+
+                                                   10
+   NEW RAPHS          FULL             NO             CYCLES           NO              NO              NO 
+
+
+
+0PARAMETERS FROM   CONVERGENCE     USE VARIABLE    TRANSL FINAL
+ (CYC./APID/SET)      TEST         DAMP  FACTOR    COORDINATES
+
+
+     CARDS           YES               NO              NO  
+
+
+
+0OUTPUT CONTROL
+ --------------
+0      LIST            LIST        LIST MATRIX     LIST CORREL    WRITE PARAMETERS
+    PARAMETERS       DISTANCES     AND VECTOR      COEFFICIENTS   ON NFILEA ( 8)
+
+    FIRST/LAST      FIRST/LAST          NO              NO            FINAL   
+
+
+
+
+
+0CONTROL FACTORS
+ ---------------
+
+         DAMPING FACTORS           STARTING  NR    CONVERGENCE    LINRES WEIGHTS  WTS FACTOR FOR   CORR MATRIX
+ COORDINATES   CELL    DISTANCES   RANDOM GENER    TEST FACTOR    MULTIPLIED BY  OUT OF RANGE D'S  TEST FACTOR
+
+    1.000     1.000      1.000            0         0.0001000           1.00000         1.00          0.50
+
+
+
+
+ PRELIMINARY STATISTICS
+ ----------------------
+
+   NUMBER OF        NUMBER OF      NUMBER OF       NUMBER OF       NUMBER OF
+ INDEPEND.ATOMS    DEPEND.ATOMS    DISTANCES       VARIABLES      RESTRICTIONS
+
+        4                5             12              8         0 HARD/ 0 SOFT
+
+
+
+   DLS-76-02        *** EXAMPLE 1 :  ALPO4  ***  SPACE GROUP P3(1)21                         DATE: 4-APR-02       PAGE   2
+
+
+
+
+ INITIAL PARAMETERS
+ ------------------
+
+                    R=REFINE      D=DEPENDENT IN A SPECIAL POSITION
+
+                    I=INVARIANT   L=DEPENDENT DUE TO A LINEAR RESTRICTION
+
+ CELL PARAMETERS
+
+
+      A           B           C          ALPHA        BETA       GAMMA       VARIABLES
+
+    4.9429 I    4.9429 D   10.9476 I     90.00 I     90.00 I    120.00 I       0 -  0
+
+
+ ATOM PARAMETERS
+
+
+
+ ATOM      X         Y         Z         TYPE      N      SPECIAL POSITIONS
+
+ AL     0.40000 R 0.00000 I 0.33333 I              1      X,0,1/3                         
+ P      0.60000 R 0.60000 D 0.50000 I              2      X,X,1/2                         
+ O1     0.50000 R 0.40000 R 0.30000 R              3                                      
+ O2     0.80000 R 0.70000 R 0.60000 R              6                                      
+0(N=NO OF THE FIRST VAR. IN THIS LINE)
+
+
+
+ SYMMETRICALLY DEPENDENT ATOMS                  SYMMETRY OPERATIONS
+ 
+ O1*    0.10000  -0.40000   0.36667             X-Y,-Y,2/3-Z                            
+ O1**   0.40000   0.50000   0.70000             Y,X,1-Z                                 
+ O2*    0.90000   0.20000   0.26667             Y-X+1,1-X,Z-1/3                         
+ O2**   0.70000  -0.20000   0.40000             Y,X-1,1-Z                               
+ O2***  0.70000   0.80000   0.40000             Y,X,1-Z                                 
+ 
+
+
+
+ INTERATOMIC DISTANCES BEFORE CYCLE   1
+0ATOM 1 ATOM 2 CALCULATED D PRESCRIBED DO     DO-D    WEIGHT     W*(DO-D)
+
+ AL     O1        1.8192        1.7480     -0.0712    2.0000     -0.1423
+ AL     O2*       2.2748        1.7480     -0.5268    2.0000     -1.0536
+ O1     O1*       3.5015        2.8545     -0.6470    1.0000     -0.6470
+ O1     O2*       2.6409        2.8545      0.2136    1.0000      0.2136
+ O1     O2**      3.7287        2.8545     -0.8742    1.0000     -0.8742
+ O2*    O2**      2.2500        2.8545      0.6045    1.0000      0.6045
+ P      O1        2.3509        1.5380     -0.8129    2.0000     -1.6259
+ P      O2        1.3898        1.5380      0.1482    2.0000      0.2965
+ O1     O1**      4.4619        2.5115     -1.9504    1.0000     -1.9504
+
+
+
+   DLS-76-02        *** EXAMPLE 1 :  ALPO4  ***  SPACE GROUP P3(1)21                         DATE: 4-APR-02       PAGE   3
+
+
+
+
+ O1     O2        3.6035        2.5115     -1.0920    1.0000     -1.0920
+ O1     O2***     2.0323        2.5115      0.4792    1.0000      0.4792
+ O2     O2***     2.3510        2.5115      0.1605    1.0000      0.1605
+
+
+
+
+0R=SQRT( SUM(W*(DO-D))**2 / SUM(W*DO)**2 )=   0.32529685     BEFORE CYCLE   1
+ SIGMA=SQRT( SUM(W*(DO-D))**2 / (M-NV) )  =   1.63613963
+
+
+
+
+0PARAMETERS AFTER CYCLE   1
+
+     PARAMETER      OLD       CHANGE      NEW                     PARAMETER      OLD       CHANGE      NEW
+
+ ATOM AL                                                      ATOM P     
+        X         0.40000   -0.11670    0.28330                      X         0.60000   -0.12685    0.47315
+        Y         0.00000    0.00000    0.00000                      Y         0.60000   -0.12685    0.47315
+        Z         0.33333    0.00000    0.33333                      Z         0.50000    0.00000    0.50000
+ ATOM O1                                                      ATOM O2    
+        X         0.50000   -0.08358    0.41642                      X         0.80000    0.14475    0.94475
+        Y         0.40000   -0.01377    0.38623                      Y         0.70000   -0.17291    0.52709
+        Z         0.30000    0.06864    0.36864                      Z         0.60000   -0.06723    0.53277
+
+0SYMMETRICALLY DEPENDENT ATOMS
+
+ ATOM      X        Y        Z
+
+ O1*    0.03020 -0.38623  0.29803
+ O1**   0.38623  0.41642  0.63136
+ O2*    0.58235  0.05525  0.19943
+ O2**   0.52709 -0.05525  0.46723
+ O2***  0.52709  0.94475  0.46723
+
+0R=SQRT( SUM(W*(DO-D))**2 / SUM(W*DO)**2 )=   0.20469055     BEFORE CYCLE   2
+ SIGMA=SQRT( SUM(W*(DO-D))**2 / (M-NV) )  =   1.02952826
+
+0R=SQRT( SUM(W*(DO-D))**2 / SUM(W*DO)**2 )=   0.06937445     BEFORE CYCLE   3
+ SIGMA=SQRT( SUM(W*(DO-D))**2 / (M-NV) )  =   0.34893140
+
+0R=SQRT( SUM(W*(DO-D))**2 / SUM(W*DO)**2 )=   0.01674917     BEFORE CYCLE   4
+ SIGMA=SQRT( SUM(W*(DO-D))**2 / (M-NV) )  =   0.08424297
+
+0R=SQRT( SUM(W*(DO-D))**2 / SUM(W*DO)**2 )=   0.00697360     BEFORE CYCLE   5
+ SIGMA=SQRT( SUM(W*(DO-D))**2 / (M-NV) )  =   0.03507501
+
+0R=SQRT( SUM(W*(DO-D))**2 / SUM(W*DO)**2 )=   0.00664025     BEFORE CYCLE   6
+ SIGMA=SQRT( SUM(W*(DO-D))**2 / (M-NV) )  =   0.03339834
+0CONVERGENCE TEST POSITIVE AFTER CYCLE   6
+
+
+
+
+   DLS-76-02        *** EXAMPLE 1 :  ALPO4  ***  SPACE GROUP P3(1)21                         DATE: 4-APR-02       PAGE   4
+
+
+
+
+ APPROXIMATE EIGENVALUES OF MATRIX (LAST CYCLE):
+
+  0.1951E+04 0.1798E+04 0.2355E+03 0.2006E+03 0.8508E+02 0.7552E+02 0.6704E+02 0.4515E+02
+ 
+
+
+
+
+0PARAMETERS AFTER CYCLE   6
+
+     PARAMETER      OLD       CHANGE      NEW                     PARAMETER      OLD       CHANGE      NEW
+
+ ATOM AL                                                      ATOM P     
+        X         0.46171    0.00004    0.46175                      X         0.53424   -0.00003    0.53421
+        Y         0.00000    0.00000    0.00000                      Y         0.53424   -0.00003    0.53421
+        Z         0.33333    0.00000    0.33333                      Z         0.50000    0.00000    0.50000
+ ATOM O1                                                      ATOM O2    
+        X         0.40947    0.00001    0.40948                      X         0.84793   -0.00005    0.84788
+        Y         0.29672   -0.00006    0.29666                      Y         0.58520    0.00002    0.58521
+        Z         0.39445    0.00002    0.39448                      Z         0.54941    0.00002    0.54943
+
+0SYMMETRICALLY DEPENDENT ATOMS
+
+ ATOM      X        Y        Z
+
+ O1*    0.11282 -0.29666  0.27219
+ O1**   0.29666  0.40948  0.60552
+ O2*    0.73734  0.15212  0.21610
+ O2**   0.58521 -0.15212  0.45057
+ O2***  0.58521  0.84788  0.45057
+
+
+
+ INTERATOMIC DISTANCES BEFORE CYCLE   7
+0ATOM 1 ATOM 2 CALCULATED D PRESCRIBED DO     DO-D    WEIGHT     W*(DO-D)
+
+ AL     O1        1.7447        1.7480      0.0033    2.0000      0.0066
+ AL     O2*       1.7447        1.7480      0.0033    2.0000      0.0067
+ O1     O1*       2.8711        2.8545     -0.0166    1.0000     -0.0166
+ O1     O2*       2.8474        2.8545      0.0071    1.0000      0.0071
+ O1     O2**      2.8248        2.8545      0.0297    1.0000      0.0297
+ O2*    O2**      2.8784        2.8545     -0.0239    1.0000     -0.0239
+ P      O1        1.5393        1.5380     -0.0013    2.0000     -0.0026
+ P      O2        1.5393        1.5380     -0.0013    2.0000     -0.0026
+ O1     O1**      2.5042        2.5115      0.0073    1.0000      0.0073
+ O1     O2        2.5528        2.5115     -0.0413    1.0000     -0.0413
+ O1     O2***     2.4876        2.5115      0.0239    1.0000      0.0239
+ O2     O2***     2.4957        2.5115      0.0158    1.0000      0.0158
+
+
+
+
+0R=SQRT( SUM(W*(DO-D))**2 / SUM(W*DO)**2 )=   0.00663991     BEFORE CYCLE   7
+ SIGMA=SQRT( SUM(W*(DO-D))**2 / (M-NV) )  =   0.03339661
+
+
+
+   DLS-76-02        *** EXAMPLE 1 :  ALPO4  ***  SPACE GROUP P3(1)21                         DATE: 4-APR-02       PAGE   5
+
+
+
+
+ TOTAL PARAMETER SHIFTS AFTER LAST CYCLE      
+
+     PARAMETER    INITIAL     CHANGE      FINAL      SHIFT        PARAMETER    INITIAL     CHANGE      FINAL      SHIFT
+
+ ATOM AL                                                      ATOM P     
+        X         0.40000    0.06175    0.46175    0.30522           X         0.60000   -0.06579    0.53421   -0.32520
+        Y         0.00000    0.00000    0.00000    0.00000           Y         0.60000   -0.06579    0.53421   -0.32520
+        Z         0.33333    0.00000    0.33333    0.00000           Z         0.50000    0.00000    0.50000    0.00000
+        MAGNITUDE                                  0.30522           MAGNITUDE                                  0.32520
+ ATOM O1                                                      ATOM O2    
+        X         0.50000   -0.09052    0.40948   -0.44743           X         0.80000    0.04788    0.84788    0.23664
+        Y         0.40000   -0.10334    0.29666   -0.51078           Y         0.70000   -0.11479    0.58521   -0.56739
+        Z         0.30000    0.09448    0.39448    1.03429           Z         0.60000   -0.05057    0.54943   -0.55358
+        MAGNITUDE                                  1.14119           MAGNITUDE                                  0.90479
+ ------------------------------------------------------------------------
+0*** FINISH ***
+1

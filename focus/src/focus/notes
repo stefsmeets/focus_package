@@ -1,0 +1,88 @@
+fourier.c: "<= Nz" not necessary, "< Nz" should work.
+  Even Nz: crZfftpack(): Last R is 0
+   Odd Nz: crZfftpack(): Last I is in Density[.,.,Nz]
+  This means, Mz = Nz + Nz % 2 should work.
+
+Use MinLoopSize with FwTracking
+Coordinated Generation of NextPeakMx/LPNNB
+NewCNmin/max <-> CouldBecomeFw()
+Test CoseqSave/Reload, rename Lbl
+PhaseUsage: alle Angaben in % und #
+Automatisch Chemistry Cards erzeugen
+MaxDistance: wenn schon alle eines Typs besetzt => MaxDistance anwendbar
+Fehlermeldung wenn MinLatticeTr2 <= TT_dMax2
+Elektronendichte am Ort der Atome vs. Dichte dazwischen
+____CT_Fcal: Unterscheidung centric/acentric
+Z->P, nur bei Vorbereitungen wichtig? Koennen hkl Z bleiben?
+IPP: Kein Freiheitsgrad: Integral trotzdem ausrechnen
+IPP: Obergrenze fuer Integral
+Abfragen auf Genauigkeit: alle sollten relativ sein
+
+#ifdef JUNK
+#ifndef JUNK
+
+
+Principles
+----------
+IllPeakInterpolation => do *not* use this peak?
+
+Input
+-----
+check: MaxPeaks <-> Sum|nPerUnitCell
+
+
+
+Voraussetzungen:
+  Fuer h,k,l darf es jeweils nur einen Eintrag geben
+  d.h. in jeder Spalte der s.i. Matrix darf nur ein Eintrag sein.
+
+
+Vollstaendige Connectivity fuer gapo:
+  Distance  Ga  O   1.80  0.30
+  Distance  P   O   1.50  0.25
+  Distance  Ga  P   3.00  0.40
+  Distance  O   O   2.75  0.40
+  Connect  Ga  4  O
+  Connect  P   4  O
+  Connect  O   1  Ga  &  1  P
+
+Vollstaendige Connectivity fuer vpi9:
+  Distance  Si  O   1.63  0.25
+  Distance  Zn  O   1.95  0.30
+  Distance  Rb  O   2.10  0.30
+  Distance  Si  Si  3.25  0.40
+  Distance  Si  Zn  3.25  0.40
+  Distance  Si  Rb  3.40  0.50
+  Distance  O   O   2.80  0.40
+  Connect  Si  4  O
+  Connect  Zn  4  O
+  Connect  O   2  Si
+  Connect  O   1  Si  &  1  Zn
+  Connect  Zn  *
+  Connect  Rb  *
+
+
+Die Intensitaeten werden nur *augenscheinlich* beruecksichtigt, da die
+Phaseninformation viel maechtiger ist. Praktisch bringt das Recyclen daher
+nur im ersten Schritt etwas.
+Moeglichkeiten um die Intensitaeten staerker zu beruecksichtigen sind:
+        - SMF Symmetrie Minimum Funktion == Peaks der Patterson
+        - Tangent Refinement a la Rius
+        - Auswertung der Differenz Fourier
+
+
+aht: TT_Eval 2(0.942) 0(1.013) 1(0.776) 3(0.787) 4(0.838) 5(0.390) : 12 6 2.000 : 24 12 2.000 : 0 0 0 0 6 : 8.96 119.25 0.075 : 299.07 1109.26 0.270
+doh: TT_Eval 1(0.977) 3(1.030) 2(0.945) 0(1.021) : 9 4 2.250 : 0 0 0 0 4 : 2.08 88.27 0.024 : 30.07 928.77 0.032
+sgt: TT_Eval 0(0.866) 1(0.896) 2(0.881) 3(1.030) : 10 4 2.500 : 0 0 0 0 4 : 2.41 96.72 0.025 : 90.21 858.60 0.105
+nu1: TT_Eval 0(0.939) 4(0.847) 1(0.908) 2(0.770) 3(0.614) : 12 5 2.400 : 72 36 2.000 : 0 0 0 0 5 : 6.29 113.39 0.055 : 215.43 953.30 0.226
+nu3: TT_Eval 0(0.818) 1(0.653) : 7 2 3.500 : 0 0 0 0 2 : 1.40 67.70 0.021 : 123.57 343.92 0.359
+vfi: TT_Eval 0(0.530) 1(0.809) : 7 2 3.500 : 0 0 0 0 2 : 8.63 71.51 0.121 : 154.59 312.90 0.494
+clo: TT_Eval 2 5(0.615) 6(0.586) 9(0.593) 0(1.023) 1(0.968) 3(0.902) 4(0.961) 7(0.562) 8 : 19 10 1.900 : 2976 1536 1.938 : 0 0 0 2 8 : 5.60 186.05 0.030 : 429.45 1451.38 0.296
+
+ksio: TT_Eval 2 3 4(0.843) 5(0.840) : 7 4 1.750 : 0 0 0 2 2 : 1.84 67.72 0.027 : 74.19 393.31 0.189
+
+lov: TT_Eval 4(0.210) 26(0.349) 3(0.337) 5(0.347) 6(0.654) 27(0.361) 0(0.835) 1(0.683) 2(0.699) : 19 9 2.111 : 0 0 0 0 9 : 12.59 172.57 0.073 : 1057.94 1045.77 1.012
+mei: TT_Eval 0(0.742) 1(0.715) 2(0.477) 3(0.734) : 10 4 2.500 : 0 0 0 0 4 : 2.30 94.71 0.024 : 311.41 623.57 0.499
+zts: TT_Eval 3(0.487) 0(0.391) 1(0.863) 4(0.777) 2(0.400) : 10 5 2.000 : 0 0 0 0 5 : 4.94 94.27 0.052 : 486.70 682.03 0.714
+vpi7: TT_Eval 0(0.261) 1(0.257) 2(0.776) 3(0.406) 4(0.421) 5(0.809) : 17 6 2.833 : 0 0 0 0 6 : 9.60 155.72 0.062 : 717.58 684.89 1.048
+rub17: TT_Eval 0(0.490) 1(0.490) 6(0.431) 3(0.643) 4(0.832) 5(0.294) 7(0.752) 8(0.479) 9(0.767) : 19 9 2.111 : 72 36 2.000 : 0 0 0 0 9 : 6.82 183.04 0.037 : 893.31 1210.40 0.738

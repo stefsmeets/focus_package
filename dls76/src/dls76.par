@@ -1,0 +1,22 @@
+C     User adjustable parameters    
+C
+C     maxat     = maximum number of atoms (including symeq atoms) (IDIMN)     
+C     maxsy     = maximum number of symeq atoms                   (IDNEQU)
+C     maxdi     = maximum number of distances                     (IDIMM)
+C     maxrt     = maximum number of distance ratios               (IDIMRT)
+C     maxte     = maximum number of TETCON cards                  (IDIMNZ)
+C     maxva     = maximum number of variables                     (IDIMNV) 
+C
+C     dependend parameters
+C
+C     maxma     = dimension of matrix (maxva*(maxva+3)/2)      
+
+
+      parameter (maxat =  800)
+      parameter (maxsy =  300)
+      parameter (maxdi = 1400)
+      parameter (maxrt =   40) 
+      parameter (maxte =   40)
+      parameter (maxva = 1200)
+      parameter (maxma = maxva*(maxva+3)/2 )
+

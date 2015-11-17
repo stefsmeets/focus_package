@@ -1,0 +1,33 @@
+TITLE  *** EXAMPLE 2 :  ANALCIME  ***  I4(1)/ACD   (WITH LINEAR RESTRICTIONS)
+DLS-76        15   1
+FACTOR                                  .012
+CELL   TET          13.73               13.73
+ATOM   T1    .16208                    AL  X,1/4-X,1/8
+ATOM   T2    .08792  .125    .33792    SI
+ATOM   O1    .10428  .1344   .21932    O
+ATOM   O2    .14572  .03068  .3844     O
+ATOM   O3    .1344   .21932  .39572    O
+NATOM  T1      .11     .14     .125
+NATOM  T2      .21     .22     .23
+NATOM  O1      .31     .32     .33
+NATOM  O2      .41     .42     .43
+NATOM  O3      .51     .52     .53
+SYMEQ  T1     T1*    X,-Y,1/2-Z
+SYMEQ  T2     T2*    1/4-Y,1/4+X,3/4-Z
+SYMEQ  T2     T2**   Y-1/4,1/4-X,3/4-Z
+SYMEQ  T2     T2***  1/4+Y,1/4-X,Z-1/4
+SYMEQ  O1     O1*    1/4-Y,1/4-X,1/4-Z
+SYMEQ  O2     O2*    1/4+Y,1/4-X,Z-1/4
+SYMEQ  O2     O2**   X,-Y,1/2-Z
+SYMEQ  O3     O3*    Y-1/4,1/4-X,3/4-Z
+BONDIS SI  O   SI   1.620     -.0004    0.        145.      2.   1.   .1
+BONDIS SI  O   AL   1.593     -.0004                        2.   1.   .1
+BONDIS AL  O   SI   1.740     -.0004                        2.   1.   .1
+TETCON       T1     O1     O2*    O1*    O2**   T2     T2***
+TETCON       T2     O1     O2     O3     O3*    T1     T1*    T2*    T2**
+LINRES 2223.    1.  *XT1    -1. *ZT2    -1. *XT2                             =0
+LINRES 2380.    1.  *XO1    -1. *XO2    -1. *ZO3                             =0
+LINRES 2083.    1.  *YO1     1. *ZO2    1.  *XO3                             =0
+LINRES 2776.    1.  *ZO1    -1. *YO2    1.  *YO3                             =0
+END
+FINISH

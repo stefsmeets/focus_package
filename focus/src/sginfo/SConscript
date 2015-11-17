@@ -1,0 +1,35 @@
+import libtbx.load_env
+Import("focus_scons_env")
+
+env = focus_scons_env.Clone()
+env.StaticLibrary(
+  target=["#lib/sginfo"],
+  source=[
+    "sgvers.c",
+    "sgclib.c",
+    "sgio.c",
+    "sgfind.c",
+    "sghkl.c",
+    "sgss.c",
+    "sgharker.c",
+    "sgutil.c",
+    "sgcond.c",
+    "sgcharmx.c",
+    "sggrid.c",
+    "sgasym.c"])
+
+env = env.Clone()
+env.Prepend(LIBS=["sginfo"])
+exe = env.Program(
+  target=["#exe/sginfo"],
+  source=[
+    "sginfo.c",
+    "cnslib.c",
+    "sgasciio.c",
+    "sgnorm.c",
+    "sghklvfy.c",
+    "sgssvfy.c",
+    "xtal32ss.c"])
+libtbx.env.write_dispatcher_in_bin(
+  source_file=exe[0].get_abspath(),
+  target_file="sginfo")

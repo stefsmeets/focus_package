@@ -1,0 +1,26 @@
+TITLE  *** EXAMPLE 1 :  ALPO4  ***  SPACE GROUP P3(1)21
+DLS-76   1    10     0                           1
+CELL   HEX          4.9429              10.9476
+ATOM   AL      .4                          X,0,1/3
+ATOM   P       .6                          X,X,1/2
+ATOM   O1      .5      .4      .3
+ATOM   O2      .8      .7      .6
+SYMEQ  O1     O1*    X-Y,-Y,2/3-Z
+SYMEQ  O1     O1**   Y,X,1-Z
+SYMEQ  O2     O2*    Y-X+1,1-X,Z-1/3
+SYMEQ  O2     O2**   Y,X-1,1-Z
+SYMEQ  O2     O2***  Y,X,1-Z
+DISTAN AL     O1     1.748     2.
+DISTAN AL     O2*    1.748     2.
+DISTAN O1     O1*    2.8545    1.
+DISTAN O1     O2*    2.8545    1.
+DISTAN O1     O2**   2.8545    1.
+DISTAN O2*    O2**   2.8545    1.
+DISTAN P      O1     1.538     2.
+DISTAN P      O2     1.538     2.
+DISTAN O1     O1**   2.5115    1.
+DISTAN O1     O2     2.5115    1.
+DISTAN O1     O2***  2.5115    1.
+DISTAN O2     O2***  2.5115    1.
+END
+FINISH

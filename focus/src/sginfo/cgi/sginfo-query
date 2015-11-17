@@ -1,0 +1,6 @@
+#! /bin/sh -f
+SGINFO_CMD_PATH="/usr/local/bin/sginfo";       export SGINFO_CMD_PATH;
+SGINFO_MAIN_URL="/sginfo/";                    export SGINFO_MAIN_URL;
+SGINFO_GIF_URL="/sginfo/sginfo.gif";           export SGINFO_GIF_URL;
+SGINFO_QUERY_URL="/user-cgi-bin/sginfo-query"; export SGINFO_QUERY_URL;
+exec ./sginfo-query.x
