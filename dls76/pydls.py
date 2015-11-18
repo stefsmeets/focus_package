@@ -59,8 +59,8 @@ def main():
 	# print out
 	# print spgr_dat
 
-	os.link(os.path.abspath(inp), "fort.7")
-	os.link(os.path.abspath(spgr_dat), "fort.10")
+	os.link(inp, "fort.7")
+	os.link(out, "fort.10")
 
 	sp.call([dls76_exe,])
 
