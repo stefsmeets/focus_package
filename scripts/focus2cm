@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+rm Fw*.cif
+focus2strudat all.out
+strudat2cif addo
+cat Fw*.cif > all.cif
+rm Fw*.cif
+crystalmaker all.cif

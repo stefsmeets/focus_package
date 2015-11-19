@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+if [ "$1" = "help" ]; then
+	echo "Usage: focus2cif (focus_output_file ...)"
+	echo ""
+	echo "Convert all frameworks in a focus output files to cif"
+	exit 1
+fi
+
+for FN in $@; do
+	focus2strudat $FN
+	strudat2cif
+done
+	

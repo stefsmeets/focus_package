@@ -18,7 +18,7 @@ cd $base
 mkdir $kriber_dir
 
 cp src/kriber.x $kriber_dir
-cp resources/{coseq,distdat,symdat} $kriber_dir
+cp resources/*  $kriber_dir
 
 cd $kriber_dir
 

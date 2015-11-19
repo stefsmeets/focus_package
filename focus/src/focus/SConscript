@@ -3,7 +3,7 @@ import libtbx.load_env
 import os
 
 env = focus_scons_env.Clone()
-env.Append(CPPPATH=["#focus/sginfo"])
+env.Append(CPPPATH=["#src/sginfo"])
 env.Append(CCFLAGS=["-DFFTfftw"])
 env.Prepend(LIBS=["fftw3f", "sginfo"])
 base = libtbx.env.under_build("base")

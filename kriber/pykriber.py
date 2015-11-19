@@ -2,6 +2,7 @@
 
 import os
 import sys
+import shutil
 
 import subprocess as sp
 
@@ -20,7 +21,7 @@ def setup():
 		src = os.path.join(drc, "kriber_f", f)
 		target = os.path.join(os.path.abspath("."), f)
 
-		os.link(src, target)
+		shutil.copyfile(src, target)
 
 def main():
 	kriber_exe = os.path.join(drc, "kriber_f", "kriber.x")

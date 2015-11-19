@@ -497,13 +497,22 @@ int main(int argc, char *argv[])
       fndb = getenv("COSEQ_DB");
   
   if (fndb == NULL)
-      fndb = "/User/smeets/focus/kriber_f/coseq";
+  { 
+      // char abspath [2048];
+      // realpath("../kriber_f/coseq", abspath);
+      // fndb = abspath;
+      fndb = "../kriber_f/coseq";
+  }
 
   if (fndb)
   {
         fpdb = fopen(fndb, "r");
     if (fpdb == NULL)
+    {
       fprintf(stderr, "%s: Warning: Can't open %s\n", progn, fndb);
+      fprintf(stderr, "Set environment variable COSEQ_DB to coseq file\n");
+      exit(1);
+    }
     else
       DB_CS_Blocks = ReadCSfile(fndb, fpdb, NULL);
   }

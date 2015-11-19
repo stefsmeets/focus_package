@@ -2,6 +2,7 @@
 
 import os
 import sys
+import shutil
 
 import subprocess as sp
 
@@ -33,9 +34,13 @@ def main():
 	dls76_exe = os.path.join(drc, "dls_f", "dls76.x")
 	spgr_dat  = os.path.join(drc, "dls_f", "spgr.dat")
 
-	assert os.path.exists(dls76_exe)
-	assert os.path.exists(spgr_dat)
-	
+	if not os.path.exists(dls76_exe):
+		print "Cannot find", dls76_Exe
+		exit()
+	if not os.path.exists(spgr_dat):
+		print "Cannot find", spgr_dat
+		exit()
+
 	clean()
 
 	args = sys.argv[1:]
@@ -50,7 +55,9 @@ def main():
 	except IndexError:
 		out = "dls76.out"
 
-	assert os.path.exists(inp)
+	if not os.path.exists(inp):
+		print "Cannot find", inp
+		exit()
 
 	inp = os.path.abspath(inp)
 	out = os.path.abspath(out)
@@ -59,8 +66,8 @@ def main():
 	# print out
 	# print spgr_dat
 
-	os.link(inp, "fort.7")
-	os.link(out, "fort.10")
+	shutil.copyfile(inp,      "fort.7")
+	shutil.copyfile(spgr_dat, "fort.10")
 
 	sp.call([dls76_exe,])
 
