@@ -3,12 +3,6 @@
 base=`pwd`
 kriber_dir="kriber_f"
 
-# Installation of FOCUS helper tools
-
-# cd utils
-# make
-# cd $base
-
 # Installation and setup of kriber
 
 cd src

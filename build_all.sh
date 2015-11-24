@@ -2,14 +2,16 @@
 
 base=`pwd`
 
+rm -rf ./focus_package/
+
 cd $base/focus
 sh focus_build_script.sh
 
-cd $base/kriber_f
-sh build_kriber_script.sh
+cd $base/kriber
+sh kriber_build_script.sh
 
-cd $base/dls_f
-sh build_dls_script.sh
+cd $base/dls76
+sh dls_build_script.sh
 
 cd $base/utils
 make

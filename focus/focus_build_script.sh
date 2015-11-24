@@ -6,38 +6,43 @@ fftw="fftw-3.3.2"
 # New versions of libtbx break compilation of FOCUS, because boost cannot be found
 libtbxrev=20000 
 
-# download and extract focus
-#curl -o focus-src.tar.gz http://cci.lbl.gov/~rwgk/focus/focus-src.tar.gz
-#tar -xvf focus-src.tar.gz
+if [ ! -d libtbx ];
+then
+	# download libtbx
+	svn co https://cctbx.svn.sourceforge.net/svnroot/cctbx/trunk/libtbx libtbx --non-interactive --trust-server-cert -r$libtbxrev
+fi
 
-# download libtbx
-svn co https://cctbx.svn.sourceforge.net/svnroot/cctbx/trunk/libtbx libtbx --non-interactive --trust-server-cert -r$libtbxrev
-
-# download and install scons
-curl -Lo $scons.tar.gz http://sourceforge.net/projects/scons/files/scons/$scons_ver/$scons.tar.gz/download
-tar -xvf $scons.tar.gz
-rm -rf $scons.tar.gz
-
-mv $scons scons
+if [ ! -d scons ];
+then
+	# download and install scons
+	curl -Lo $scons.tar.gz http://sourceforge.net/projects/scons/files/scons/$scons_ver/$scons.tar.gz/download
+	tar -xvf $scons.tar.gz
+	rm -rf $scons.tar.gz
+	
+	mv $scons scons
+fi
 
 mkdir build
 cd build
 
-# download and build fftw
-prefix=`pwd`
-
-curl -o $fftw.tar.gz http://www.fftw.org/$fftw.tar.gz
-tar -xvf $fftw.tar.gz
-
-cd $fftw
-./configure --prefix="$prefix/base" --enable-single
-
-make $*
-make install
-
-cd $prefix
-rm -rf $fftw
-rm -rf $fftw.tar.gz
+if [ ! -f ./base/bin/fftwf-wisdom ];
+then
+	# download and build fftw
+	prefix=`pwd`
+	
+	curl -o $fftw.tar.gz http://www.fftw.org/$fftw.tar.gz
+	tar -xvf $fftw.tar.gz
+	
+	cd $fftw
+	./configure --prefix="$prefix/base" --enable-single
+	
+	make $*
+	make install
+	
+	cd $prefix
+	rm -rf $fftw
+	rm -rf $fftw.tar.gz
+fi
 
 # build focus
 python ../libtbx/configure.py src

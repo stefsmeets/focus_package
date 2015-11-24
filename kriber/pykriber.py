@@ -8,8 +8,6 @@ import subprocess as sp
 
 drc = os.path.abspath(os.path.dirname( __file__ )) # get path of program
 
-print "RAWR"
-
 def clean():
 	files = ["symdat", "distdat", "coseq"]
 	for f in files:
