@@ -6,37 +6,40 @@ import shutil
 
 import subprocess as sp
 
-drc = os.path.abspath(os.path.dirname( __file__ )) # get path of program
+drc = os.path.abspath(os.path.dirname(__file__))  # get path of program
+
 
 def clean():
-	files = ["symdat", "distdat", "coseq"]
-	for f in files:
-		if os.path.exists(f):
-			os.remove(f)
+    files = ["symdat", "distdat", "coseq"]
+    for f in files:
+        if os.path.exists(f):
+            os.remove(f)
+
 
 def setup():
-	files = ["symdat", "distdat", "coseq"]
-	for f in files:
+    files = ["symdat", "distdat", "coseq"]
+    for f in files:
 
-		src = os.path.join(drc, "kriber_f", f)
-		target = os.path.join(os.path.abspath("."), f)
+        src = os.path.join(drc, "kriber_f", f)
+        target = os.path.join(os.path.abspath("."), f)
 
-		shutil.copyfile(src, target)
+        shutil.copyfile(src, target)
+
 
 def main():
-	kriber_exe = os.path.join(drc, "kriber_f", "kriber.x")
+    kriber_exe = os.path.join(drc, "kriber_f", "kriber.x")
 
-	clean()
-	setup()
+    clean()
+    setup()
 
-	assert os.path.exists(kriber_exe)
-	files = ["symdat", "distdat", "coseq"]
-	for f in files:
-		assert os.path.exists(f)
+    assert os.path.exists(kriber_exe)
+    files = ["symdat", "distdat", "coseq"]
+    for f in files:
+        assert os.path.exists(f)
 
-	sp.call([kriber_exe] + sys.argv[1:])
+    sp.call([kriber_exe] + sys.argv[1:])
 
-	clean()
+    clean()
 
 if __name__ == '__main__':
-	main()
+    main()

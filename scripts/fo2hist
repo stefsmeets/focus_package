@@ -1,2 +1,2 @@
-#! /bin/csh -f
+#!/bin/csh -f
 get_coseq "$1" | coseq_cmp
