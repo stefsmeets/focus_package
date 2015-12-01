@@ -1,7 +1,7 @@
 Quick installation
 ==================
 
-Compiled versions and source distribution is available platform from https://github.com/stefsmeets/focus_package/releases
+Compiled versions and source distribution is available from https://github.com/stefsmeets/focus_package/releases
 
 
 Extract using
