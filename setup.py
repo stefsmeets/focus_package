@@ -10,6 +10,8 @@ setup(
 
     author="Stef Smeets",
     author_email="stef.smeets@mat.ethz.ch",
+    maintainer="Stef Smeets",
+    maintainer_email="stef.smeets@mat.ethz.ch",
     license="GPL",
     url="https://github.com/stefsmeets/focus_package",
 
