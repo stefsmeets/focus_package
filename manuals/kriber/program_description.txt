@@ -1,0 +1,113 @@
+ ==============================================================================
+
+           K R I B E R :          U S E R    M A N U A L
+
+           Version 1.0 (January 1991)
+
+ ==============================================================================
+
+
+       KRIBER is an interactive PASCAL program to
+       - calculate distances and angles.
+       - generate input files for the program DLS-76 [1] and for the
+         program LOADAT of the X-Ray Rietveld System XRS-82 [2].
+       - calculate coordination sequences and loop configurations
+
+
+ Author:   Roland Bialek
+           Institut fuer Kristallografie und Petrografie
+           ETH-Zentrum, CH-8092 Zuerich, Switzerland
+
+
+
+ 1. Description of the program  (will be sent to J. Appl. Cryst.)
+    ==========================
+
+ 1.1 The crystallographic problem
+     ----------------------------
+
+ To set up an input file for the distance least squares program DLS-76 [1] or
+ the geometric restraints for XRS-82 [2], all the symmetrically independent
+ distances and angles of a framework have to be determined and DISTAN and ANGLE
+ lines written in the correct format. This is time consuming, especially if the
+ coordinates of the atoms are estimated from a physical model and the crystallo-
+ graphic description of the connectivity of the atoms must be determined.
+ From basic structural data, the program KRIBER generates complete input files
+ for both programs and calculates additional topological values to test the
+ connectivity of a framework.
+
+ 1.2 Method of solution
+     ------------------
+
+ The basic structural information (space group symbol, cell parameters, posi-
+ tional coordinates and coordination numbers) is read interactively or from
+ a file. The symmetry information for standard and non-standard settings is
+ read from a supplied data file. The program calculates distances and angles.
+ The connectivity of the atoms is determined automatically from the shortest
+ interatomic distances, or can be generated and changed interactively.
+ For framework oxide structures (e.g. zeolites), one can start with the
+ non-oxygen atoms only (e.g. T-atoms) and after establishing the connectivity
+ the program will place oxygen atoms midway between the non-oxygen atoms.
+ Then an input file for the program DLS-76 (with or without TETCON lines) or
+ for the program XRS-82 is generated, using prescribed values for the distances
+ and angles from a user-supplied file.
+ To test the topology, a procedure for calculating the coordination sequences of
+ the framework [4,5,6] is also incorporated. Its result will be compared with
+ the known coordination sequences listed in the Atlas of Zeolite Structure Types
+ [7]. In addition loop configurations [8] can also be calculated to facilitate
+ error checking (comparison of the internal model with the real one).
+1
+ 1.3 Software and Hardware environment
+     ---------------------------------
+
+ The program is written in standard PASCAL and has been implemented and fully
+ tested on a CYBER 855 running under NOS/VE 1.5.2. It has also been used
+ successfully on a MicroVAX II machine under VMS 5.2. The program runs inter-
+ actively. No external library is required.
+ The output is written to the terminal screen and, if desired, to a list file.
+ The longest line in the output file is 80 columns wide. No special peripherals
+ are needed.
+
+ 1.4 Program specifications
+     ----------------------
+
+ The program consists of a main program, 123 procedures and 16 functions. It
+ contains about 3300 lines of PASCAL source code. The maximum number of atom
+ positions, bonds and independent bonds and angles can easily be changed before
+ compilation in the constant declaration part of the source code.
+ The program has been tested with different zeolitic frameworks.
+
+ 1.5 Documentation
+     -------------
+
+ A user manual is available as a machine-readable file. There is also an
+ online-help command to show a summary of all commands. A worked example is
+ provided.
+
+ 1.6 Availability
+     ------------
+ Copies of the user manual, the program source code and its data files are
+ available from Ch. Baerlocher, Institute of Crystallography, ETH-Z, CH-8092
+ Zurich, Switzerland. It can be provided via electronic mail, or on a
+ user-supplied 9-track magnetic tape (1600 or 6250 bpi), TK50 or TK70. Tapes
+ can be written with either COPY or VMS BACKUP format.
+ A nominal fee (SFr 75.-) will be charged to cover handling costs.
+
+
+ References
+ ==========
+
+ [1] Ch. Baerlocher, A. Hepp, W.M. Meier: DLS-76, a program for the simulation
+     of crystal structures by geometric refinement. Institut fuer Kristallo-
+     graphie und Petrographie, ETH Zuerich.
+ [2] Ch. Baerlocher: The X-ray Rietveld System, XRS-82, Version of September
+     1982. Institut fuer Kristallographie und Petrographie, ETH Zuerich.
+ [3] International Tables for Crystallography, Volume A, Space-group symmetry
+     (Edited by T. Hahn) 1983.
+ [4] G.O. Brunner & F. Laves: Wiss. Z. Techn. Univers. Dresden 20, 387 (1971)
+     H.2.
+ [5] G.O. Brunner: J. Solid State Chem. 29, 41-45 (1979).
+ [6] W.M. Meier & H.J. Moeck: J. Solid State Chem. 27, 349 (1979).
+ [7] W.M. Meier & D.H. Olson: Atlas of Zeolite Structure Types, Second
+     Revised Edition, Butterworths (1987).
+ [8] W.M. Meier: Pure & Appl. Chem. 58, 1323-1328 (1986).

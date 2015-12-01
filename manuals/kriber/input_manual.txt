@@ -1,0 +1,360 @@
+ ==============================================================================
+
+           K R I B E R :          U S E R    M A N U A L
+
+           Version 1.0 (January 1991)
+
+ ==============================================================================
+
+
+
+ 2. General remarks
+    ===============
+
+ 2.1 Atom positions
+     --------------
+
+ For each atom, a label, the fractional coordinates and the coordination number
+ have to be given. The label is the element symbol or the element symbol + a
+ number. Coordinates are separated by spaces (Notice that the programming
+ language PASCAL does not accept .137 or -.587. You always have to type the
+ zeros: 0.137, -0.587). The default values for the coordination numbers are 4
+ for Si, Al, P and T, 2 for O and 0 for all the other elements.
+ Examples: Si3 0.2348 0.4295 0.5     4
+           Na  0      0      0
+           P3  0.2373 0.2373 0.7667  5
+
+ 2.2 Atoms
+     -----
+
+ Specific atoms are designated by an atom label, the sequential number of the
+ atom (in brackets) and the unit cell translation (in brackets). The command
+ 'disc' shows the sequential numbers of all the symmetrically equivalent atoms
+ in the unit cell. The default value for the sequential number is (1) and for
+ the unit cell translation (0 0 0). (Only the first bracket is mandatory.)
+ Examples: Si1 (3) (0 0 1)
+           T2
+           Al3 (7)
+           P2  ( 23 -1 -1 -1
+
+ Alternatively, the atom label and the symmetry operation, which transforms the
+ original atom (with sequential number 1) to the desired atom, can be given.
+ Examples: Si1 -X,-X+Y,-Z+1/2
+           AL5 -2X,-X,Z
+
+ 2.3 Space groups
+     ------------
+
+ The space groups are specified by their short symbols in Hermann-Mauguin
+ notation. The bar operation is coded as '-' (either before or after the
+ rotation axis symbol) and screw axes are given by two integers. Blank spaces
+ are ignored.
+ Examples: Ibam
+           P 43 21 2
+           P N 3- N
+
+ For the monoclinic system, space groups with different settings and cell
+ choices are specified by their extended Hermann-Mauguin symbols. If the short
+ symbol is given, the program assume the setting with the b-axis unique.
+ (if this is not possible, the setting with the c-axis unique).
+ Examples: Cm = C1m1, Im = I1m1, Bb = B11b
+1For orthorhombic, tetragonal and cubic space groups with two different origin
+ choices, the default is the first setting given in the International Tables
+ [3]. To specify the choice of the origin, an additional character is appended
+ to the space group symbol as follows:
+
+  Z   for origin at a center of symmetry
+      Example: Fd-3mZ
+  S   for origin choice 1 of the International Tables [3]
+      Example: Fd-3mS
+
+ For trigonal space groups with rhombohedral symmetry, the program uses the
+ rhombohedral axes by default. However, it is possible to specify the axis
+ system explicitly with an additional character as follows:
+
+  R   for rhombohedral axes
+      Example: R 3 m R
+  H   for hexagonal axis
+      Example: R 3 m H
+
+ The symmetry information of the space group is read from the file SYMDAT.
+ Non-standard settings are calculated by transforming the symmetry operations
+ of the standard ones. Other space groups can be added to the SYMDAT file. (see
+ file description for SYMDAT)
+
+
+ 3. Description of the commands
+    ===========================
+
+ 3.1 General
+     -------
+
+ All commands can be written in capital or small letters. If a "display" command
+ is given, but the required results have not yet been calculated, the necessary
+ calculations are performed automatically.
+
+ help     displays a short summary of all commands.
+
+ quit     leaves the program.
+
+ end      leaves the program.
+
+ 3.2 Crystal Structure and Distances
+     -------------------------------
+
+ reacs    reads the crystal structure data.
+          The program asks for the compound identification code to read the
+          structural data from an entry on the file STRUDAT. If you type <ret>,
+          the data can be entered directly from the terminal.
+
+ reafcs   reads the crystal structure data from the first entry on the file
+          STRUDAT.
+
+ reancs   reads next crystal structure data entry on the file STRUDAT.
+
+ dise     displays a list of the compound identification codes of all entries
+          on the file STRUDAT.
+
+ wrise    writes a new entry for the present structure data on file STRUDATNEW.
+
+
+1discs    displays the crystal structure data: cell constants, space group,
+          atom coordinates and symmetry constraints.
+ diss     displays the symmetry information of the space group.
+
+ adda     adds a new atom position.
+          The program asks for a new atom position. (See 2.1)
+
+ dela     deletes an atom position.
+          Enter the label of the atom position to be deleted.
+
+ disc     displays the sequential number, the coordinates and the symmetry
+          constraints for all atoms in the unit cell.
+
+ wrics    writes the information displayed by discs on file LIST.
+
+ wris     writes the information displayed by diss on file LIST.
+
+ wric     writes the information displayed by disc on file LIST.
+
+
+ cald     calculates the 9 shortest distances from every given atom.
+          (The number of bonds to be calculated can be changed in the constant
+          declaration part of the source code before compilation.)
+
+ disad    displays all calculated distances.
+
+ disd     displays calculated distances from one atom
+
+ disda    displays the 7 shortest distances from every atom and the
+          corresponding angles.
+
+ disdv    displays the calculated distances and the interatomic vectors of
+          every atom.
+
+ wrid     writes the information displayed by disd on file LIST.
+
+ wrida    writes the information displayed by disda on file LIST.
+
+ wridv    writes the information displayed by disdv on file LIST.
+
+
+ 3.3 Connectivity
+     ------------
+
+ creab    creates all bonds from the list of distances, starting with shortest
+          distances.
+          The number of bonds for an atom corresponds to the coordination
+          number given for that atom.
+
+ creb     creates a bond between two given atoms.
+          Enter the designations of the two atoms (see 2.2), or enter the
+          designation of the first atom and the number of the distance (in the
+          list of distances from the first atom obtained with the command
+          'disd').
+
+ delb     deletes a bond between two atoms.
+          Enter the designations of the two atoms (see 2.2), or enter the
+          designation of the first atom and the number of the bond (in the list
+          of bonds from the first atom obtained with the command 'disb').
+          NOTE: If you delete a bond, the numbering of the remaining bonds may
+1         change.
+
+ delab    deletes all bonds.
+
+ disb     displays the bonds for one atom.
+
+ disab    displays the bonds for each atom.
+
+ addo     adds oxygen atoms by replacing the bonds between non-oxygen atoms with
+          oxygen bridges.
+
+ delo     deletes all oxygen bridges and connects the non-oxygen atoms directly.
+
+ wrib     writes the information displayed by disb on file LIST.
+
+ wriab    writes the information displayed by disab on file LIST.
+
+
+ 2.3 Topology
+     --------
+
+ calcs    calculates the first 10 values of the coordination sequence [4,5,6]
+          for each atom position.
+
+ dett     determines the topology of the framework.
+          The program deletes the oxygen bridges and connects the non-oxygen
+          atoms directly. It then calculates the coordination sequences and
+          compares them with coordination sequences of known frameworks [7]
+          (contained on file COSEQ).
+
+ callc    calculates loop configurations [8].
+          The smallest rings that close each of the bond angles of each atom
+          are calculated. This ring may not contain a third neighboring atom of
+          the central atom.
+
+
+ 3.4 Generation of input files
+     -------------------------
+
+ wriid    generates an input file for the program DLS-76 (with or without TETCON
+          lines) and writes it on file DLSINPUT.
+          If the number of bonds does not agree with the coordination number,
+          the program asks you to change the coordination number to the number
+          of bonds.
+
+ wriil    generates an input file for the program LOADAT of XRS-82 and writes
+          it on file LOADATINPUT. If the number of bonds does not agree with
+          the coordination number, the program asks you to change the
+          coordination number to the number of bonds.
+
+
+14. Description of the file structures
+    ==================================
+
+ 4.1 File SYMDAT
+     -----------
+
+ The file SYMDAT contains the symmetry information of the different space goups.
+ The entries have the following format:
+
+ line n      '============================'
+ line n+1    '*', space group symbol (col. 2 - 22), space group number, code for
+             the crystal system, code for center of symmetry
+ line n+2ff  symmetry operation
+ last line   '============================'
+
+ The first character of the space group symbol must be the symbol of the
+ centering type of cell (P,A,B,C,I,F,R). The code for the crystal system is
+   - 'TRIC' for triclinic,
+   - 'MON'  for monoclinic,
+   - 'ORT'  for orthorhombic,
+   - 'TET'  for tetragonal,
+   - 'TRIG' for trigonal with hexagonal axes,
+   - 'RHO'  for trigonal with rhombohedral axes,
+   - 'HEX'  for hexagonal and
+   - 'CUB'  for cubic.
+ The code for the center of symmetry is -1 if a center of symmetry is at the
+ origin, and 1 otherwise. Coordinates are separated by commas and fractions are
+ written as two integers separated by a slash.
+ For centered cells (A,B,C,I,F,R) only one of the positions related by centering
+ needs to be given. If there is a center of symmetry at the origin and the code
+ for the center of symmetry is -1, only one of the two centrosymmetric positions
+ need to be given.
+
+ Example:
+ ========================================
+ *I4/MCM             140  TET  -1
+ X,Y,Z
+ X,-Y,Z+1/2
+ X,Y,-Z
+ X,-Y,-Z+1/2
+ -Y,X,Z
+ Y,X,Z+1/2
+ -Y,X,-Z
+ Y,X,-Z+1/2
+ ========================================
+
+ In the file SYMDAT, non-standard settings are defined by a standard setting and
+ a matrix (in brackets) which transforms the symmetry operations from the
+ standard setting to the non-standard one.
+ Examples: *P121            ==>P112(Y,Z,X)
+           *PNNNS           ==>PNNNZ(X-1/4,Y-1/4,Z-1/4)
+
+
+14.2 File STRUDAT
+     ------------
+
+ The file STRUDAT contains the crystal structures data. Every entry has a
+ compound identification code. The entries have the following format:
+
+ line n      '----------------------------'
+ line n+1    '*', compound identification code for this entry (col. 2 ...)
+ line n+2    title
+ line n+3    reference
+ line n+4    space group symbol
+ line n+5    cell parameters
+ line n+7ff  atom position
+ last line   '----------------------------'
+
+ For the cell parameters, either all 6 values or just the independent ones can
+ be given. Axial lengths are in angstroms and interaxial angles in degrees. For
+ the specification of the space group and the atom positions see 2.3 and 2.1.
+
+ Example:
+ -------------------------------------
+ *abw
+ Rubidium alumino-silicate
+ Z. Krist.:142, 225-238 (1975).
+ P c 21 n
+ 9.22600  5.33700  8.74100
+ RB1  0.20370  0.50030  0.50090
+ SI1  0.08400 -0.01840  0.19390     4
+ AL1  0.41660 -0.01700  0.31280     4
+ O1   0.08480 -0.01760  0.01000     2
+ O2  -0.03110 -0.22470  0.25690     2
+ O3   0.03810  0.25660  0.25680     2
+ O4   0.24360 -0.09570  0.25350     2
+ ----------------------------------------
+
+ 4.3 File DISTDAT
+     ------------
+
+ The file DISTDAT contains the prescribed values for the bond distances and
+ angles, which are used to create the DISTAN, ANGLE and BONDIS cards in the
+ input files of the programs DLS-76 and LOADAT.
+ The entries have the following format:
+
+ line n      first element with coordination number,
+             second element with coordination number,
+             third element with coordination number (only for angles),
+             prescribed value for this distance or angle, standard deviation
+
+ Coordination numbers have to be given in square brackets.
+
+ Example:
+ SI[4] O [2]              1.628   0.01
+ AL[4] O [2]              1.740   0.01
+ SI[4] O [2] SI[4]        145     8.0
+ SI[4] O [2] AL[4]        145     8.0
+ O [2] SI[4] O [2]        109     2.0
+ O [1] AL[4] O [2]        109     2.0
+
+14.4 File COSEQ
+     ----------
+
+ The file COSEQ contains the coordination sequences of different frameworks.
+ It is used to determine the structure type of a framework.
+ The entries have the following format:
+
+ line n      code for the structure type, first 10 values of the coordination
+             sequence, comment (optional)
+
+ Example:
+ ABW          4  10  21  36  54  78 106 136 173 214
+ AEL          4  11  21  37  59  85 114 150 189 232
+ AEL          4  11  22  38  58  85 115 148 188 234
+ AEL          4  12  24  40  59  84 115 150 186 230
+ AFG          4  10  20  34  53  76 103 135 170 208
+ AFG          4  10  20  34  54  78 104 134 168 210
+ AFI          4  11  21  35  53  77 105 137 172 212

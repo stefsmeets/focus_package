@@ -1,7 +1,7 @@
 Quick installation
 ==================
 
-Download the FOCUS package from https://www.crystal.mat.ethz.ch/Software/
+Compiled versions and source distribution is available platform from https://github.com/stefsmeets/focus_package/releases
 
 
 Extract using
