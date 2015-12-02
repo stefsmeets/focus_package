@@ -16,15 +16,14 @@ Install with python:
 
     python setup.py install
 
+This will install all files into a directory on your system path. After this, you can remove the installation directory. 
 
-The OSX version of DLS76 have been compiled using brew gfortran (<http://brew.sh/>)
+The OSX version of DLS76 has been compiled using brew gfortran (<http://brew.sh/>)
 To install gfortran:
     
     brew install gfortran
 
-
-After the install step, you can remove the whole directory. 
-The scripts have been tested to work on recent versions of OS X and Ubuntu.
+These scripts have been tested to work on recent versions of OS X and Ubuntu.
 
 
 Installation from source

@@ -1,11 +1,11 @@
-#!/usr/bin/env
+#!/usr/bin/env python
 
 from setuptools import setup, find_packages
 from os import path
 
 setup(
     name="focus_package",
-    version="0.1.0",
+    version="1.0",
     description="FOCUS package including DLS-76 and KRIBER",
 
     author="Stef Smeets",
@@ -52,3 +52,5 @@ setup(
         ]
     }
 )
+
+print "\nInstallation complete. You can now remove this directory."
