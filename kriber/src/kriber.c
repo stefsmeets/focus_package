@@ -5179,7 +5179,7 @@ Static Void m_berechne_distanzen(long anzdistanzen)
   FORLIM = strukturdaten.anzatomlagen;
   for (i = 0; i < FORLIM; i++)
     berechne_distanzen(&strukturdaten.atomlage[i]->grundatom, &strukturdaten,
-                       anzdistanzen, 8.0);
+                       anzdistanzen, 4.0);
   berechnet |= 1 << ((long)distanzen - (long)struktur);
 }
 
