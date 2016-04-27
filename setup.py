@@ -75,7 +75,7 @@ else:
 
 Put these files in a location on your system path:
 """
-    if sys.platform == "darwin"
+    if sys.platform == "darwin":
         print """     
         ./bin_osx/focus
         ./bin_osx/sginfo"""

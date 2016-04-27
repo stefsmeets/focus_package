@@ -89,8 +89,8 @@ def run(options, filenames):
 			#fnout = fn.replace('.inp','_{}.out'.format(i))
 			fnout = os.path.splitext(fn)[0] + '_{}.out'.format(i)
 				
-			cmd = ['sfocus',fn,n_runs]
-			print '     >> sfocus', fn, n_runs, focus_args, '...',
+			cmd = ['focus', fn, n_runs]
+			print '     >> focus', fn, n_runs, focus_args, '...',
 
 			if focus_args:
 				cmd.append(focus_args)

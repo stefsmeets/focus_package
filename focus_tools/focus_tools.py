@@ -48,7 +48,7 @@ def parse_coseq(f, neighbours=100):
 
     return db,rdb
 
-coseqdb, coseqrdb = parse_coseq(os.path.join(drc, "kriber_f", "coseq"))   # coseq length = 10
+coseqdb, coseqrdb = parse_coseq(os.path.join(drc, "..", "resources", "coseq"))   # coseq length = 10
 
 
 def uniquify_list(lst):
@@ -85,7 +85,7 @@ def section(f, intro="F", key=None):
     
     out = False
     num = intro+"0000"
-    
+
     for line in f:
         if line.startswith(start):
             out = True
@@ -99,8 +99,6 @@ def section(f, intro="F", key=None):
         if out:
             yield num+" "+line.strip()
 
-# for line in section("nat.out", key="coseq"):
-#     print line
 
 def cut(line, col):
     inp = line.split()
@@ -127,7 +125,8 @@ def coseq_reduce(lines):
         
         assert len(inp) == 10
         seq.append(inp)
-    del d[""]
+    if d.has_key(""):
+        del d[""]
     return d
 
 def get_coseq(fn):
@@ -147,7 +146,7 @@ def coseq_cmp(d, coseqdb):
         try:
             fw = di[v]
         except KeyError:
-            print "error"
+            print "KeyError:", v
             fw = None
         else:
             try:
@@ -181,7 +180,7 @@ def fo2hist(f):
     print
 
 def fo2strudat(f, fout=None, unique_only=True):
-    lines = section("nat.out", key="Framework")
+    lines = section(f, key="Framework")
     if unique_only:
         d = get_coseq(f)
         dcounts, dmap = coseq_cmp(d, coseqdb)
