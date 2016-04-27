@@ -29,11 +29,17 @@ def setup():
 
 def prepare():
     kriber_exe = os.path.join(drc, "..", "bin", "kriber.x")
+    kriber_exe_dev = os.path.join(drc, "..", "bin_windows", "bin", "kriber.x") # check developer path
 
     clean()
     setup()
 
-    assert os.path.exists(kriber_exe)
+    if not os.path.exists(kriber_exe):
+        if not os.path.exists(kriber_exe_dev):
+            print "Cannot find", kriber_exe
+            exit()
+        kriber_exe = kriber_exe_dev
+
     files = ["symdat", "distdat", "coseq"]
     for f in files:
         assert os.path.exists(f)
@@ -49,7 +55,11 @@ def move(fname, target):
 
 def extract_all_keys_from_strudat():
     keys = []
-    strudat = open("strudat", "r")
+    try:
+        strudat = open("strudat", "r")
+    except IOError:
+        print "Cannot find 'strudat' file"
+        exit()
 
     for line in strudat:
         if line.startswith("*"):
@@ -121,15 +131,13 @@ def kriber(args=[]):
 
 
 def strudat2cif_entry():
-    strudat2cif(args=sys.argv[1:])
-
-
-def strudat2cif_entry():
-    strudat2cif(keys=sys.argv[1:])
+    fns = sys.argv[1:]
+    strudat2cif(args=fns)
 
 
 def kriber_entry():
-    kriber(args=sys.argv[1:]) 
+    fns = sys.argv[1:]
+    kriber(args=fns) 
 
 
 if __name__ == '__main__':

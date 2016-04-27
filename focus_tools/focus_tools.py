@@ -287,8 +287,12 @@ def cdlsall_entry():
 
 
 def fo2cif_entry():
-    strudat = open("strudat", "w")
-    for fn in sys.argv[1:]:
+    fns = sys.argv[1:]
+    if not fns:
+        print "No files given. \n \n >> Usage: fo2cif foc.out [...]"
+        exit()
+
+    for fn in fns:
         fo2strudat(fn, fout=strudat)
 
     import pykriber
@@ -296,13 +300,23 @@ def fo2cif_entry():
 
 
 def fo2hist_entry():
-    for fn in sys.argv[1:]:
+    fns = sys.argv[1:]
+    if not fns:
+        print "No files given. \n \n >> Usage: fo2hist foc.out [...]"
+        exit()
+
+    for fn in fns:
         fo2hist(fn)
 
 
 def fo2strudat_entry():
+    fns = sys.argv[1:]
+    if not fns:
+        print "No files given. \n \n >> Usage: fo2strudat foc.out [...]"
+        exit()
+
     strudat = open("strudat", "w")
-    for fn in sys.argv[1:]:
+    for fn in fns:
         fo2strudat(fn, fout=strudat)
 
 

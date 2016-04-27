@@ -32,11 +32,14 @@ def move_files():
 
 def dls76(args=[]):
 	dls76_exe = os.path.join(drc, "..", "bin", "dls76.x")
+	dls76_exe_dev = os.path.join(drc, "..", "bin_windows", "bin", "dls76.x") # check developer path
 	spgr_dat  = os.path.join(drc, "..", "resources", "spgr.dat")
 
 	if not os.path.exists(dls76_exe):
-		print "Cannot find", dls76_exe
-		exit()
+		if not os.path.exists(dls76_exe_dev):
+			print "Cannot find", dls76_exe
+			exit()
+		dls76_exe = dls76_exe_dev
 	if not os.path.exists(spgr_dat):
 		print "Cannot find", spgr_dat
 		exit()
@@ -44,12 +47,12 @@ def dls76(args=[]):
 	clean()
 
 	try:
-		inp = args[0]		
+		inp = args[0]       
 	except IndexError:
 		inp = "dls76.inp"
 
 	try:
-		out = args[1]		
+		out = args[1]       
 	except IndexError:
 		out = "dls76.out"
 
