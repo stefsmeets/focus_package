@@ -60,6 +60,7 @@
 /*          maxanzahldistanzen    :   maximum number of calculated distances  */
 /*                                                                            */
 /*  Modified by Bernt Karasch, modifications marked with '### BK'             */
+/*  Maintained by Stef Smeets (2011-)                                                                          */
 /*                                                                            */
 /******************************************************************************/
 

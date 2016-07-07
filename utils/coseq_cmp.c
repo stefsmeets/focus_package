@@ -501,7 +501,7 @@ int main(int argc, char *argv[])
       // char abspath [2048];
       // realpath("../kriber_f/coseq", abspath);
       // fndb = abspath;
-      fndb = "../kriber_f/coseq";
+      fndb = "../../resources/coseq";
   }
 
   if (fndb)

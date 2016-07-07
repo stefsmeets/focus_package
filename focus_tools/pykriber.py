@@ -44,6 +44,9 @@ def prepare():
     for f in files:
         assert os.path.exists(f)
 
+    if not os.path.exists("strudat"):
+        print ">> Warning: Cannot find 'strudat' file\n"
+
     return kriber_exe
 
 

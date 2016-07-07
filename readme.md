@@ -18,12 +18,14 @@ Install with python:
 
 This will install all files into a directory on your system path. After this, you can remove the installation directory. 
 
+The Windows version needs Visual C++ Redistributable for Visual Studio 2015, available from https://www.microsoft.com/en-us/download/details.aspx?id=48145 (vc_redist.x86.exe)
+
 The OSX version of DLS76 has been compiled using brew gfortran (<http://brew.sh/>)
 To install gfortran:
     
     brew install gfortran
 
-These scripts have been tested to work on recent versions of OS X and Ubuntu.
+These scripts have been tested to work on recent versions of Windows, OS X, Ubuntu.
 
 
 Installation from source

@@ -52,7 +52,7 @@ coseqdb, coseqrdb = parse_coseq(os.path.join(drc, "..", "resources", "coseq"))  
 
 
 def uniquify_list(lst):
-    return list(map(itemgetter(0), groupby(lst)))
+    return list(set(lst))
 
 def uniquify_invert_dict(d):
     uniq_map = {}
@@ -187,9 +187,13 @@ def fo2strudat(f, fout=None, unique_only=True):
         keys = dcounts.keys()
 
         for line in lines:
-            key, string = line.split(None, 1)
+            try:
+                key, title = line.split(None, 1)
+            except ValueError:    # if no Title is given in foc.inp
+                key = line.strip()
+                title = ""
             if key in keys:
-                print >> fout, string  
+                print >> fout, title  
     else:
         for line in lines:
             print >> fout, line.split(None, 1)[0]
@@ -271,8 +275,8 @@ def cdlsall(threshold=0.01):
 def dlsall_entry():
     args = sys.argv[1:]
     if len(args) == 1:
-        treshold = float(args[0])
-        dlsall(treshold=threshold)
+        threshold = float(args[0])
+        dlsall(threshold=threshold)
     else:
         dlsall()
 
@@ -280,8 +284,8 @@ def dlsall_entry():
 def cdlsall_entry():
     args = sys.argv[1:]
     if len(args) == 1:
-        treshold = float(args[0])
-        cdlsall(treshold=threshold)
+        threshold = float(args[0])
+        cdlsall(threshold=threshold)
     else:
         cdlsall() 
 
@@ -292,8 +296,10 @@ def fo2cif_entry():
         print "No files given. \n \n >> Usage: fo2cif foc.out [...]"
         exit()
 
+    strudat = open("strudat", "w")
     for fn in fns:
         fo2strudat(fn, fout=strudat)
+    strudat.close()
 
     import pykriber
     pykriber.strudat2cif()
