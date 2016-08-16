@@ -109,6 +109,7 @@ def coseq_reduce(lines):
     last_key = ""
     seq = []
     d = {}
+    key = None
     for line in lines:
         inp = line.split()
         key = inp.pop(0)
@@ -125,8 +126,14 @@ def coseq_reduce(lines):
         
         assert len(inp) == 10
         seq.append(inp)
+    # remove empty key
     if d.has_key(""):
         del d[""]
+    # ensure last FW is added too
+    if key:
+        seq = uniquify_list(seq)
+        seq.sort()
+        d[key] = seq
     return d
 
 def get_coseq(fn):
