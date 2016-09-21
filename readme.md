@@ -1,32 +1,42 @@
 Quick installation
 ==================
 
-Compiled versions and source distribution are available from https://github.com/stefsmeets/focus_package/releases
+Download the FOCUS package from (https://github.com/stefsmeets/focus_package/releases)[https://github.com/stefsmeets/focus_package/releases]
 
-
-Extract using
-
-    tar -xvzf focus_package-linux.tar.gz
-
-or
-
-    tar -xvzf focus_package-osx.tar.gz
-
-Install with python:
-
+1.	Unzip or extract using tar -xvzf focus-osx.tar.gz
+2.	Install with python:
     python setup.py install
 
-This will install all files into a directory on your system path. After this, you can remove the installation directory. 
+Focus and all included scripts have been tested to work on recent versions of Windows, OS X, Ubuntu.
 
-The Windows version needs Visual C++ Redistributable for Visual Studio 2015, available from https://www.microsoft.com/en-us/download/details.aspx?id=48145 (vc_redist.x86.exe)
+### Windows
 
-The OSX version of DLS76 has been compiled using brew gfortran (<http://brew.sh/>)
-To install gfortran:
+	Windows users need to install [Python 2.7](https://www.python.org/downloads/)
+
+	The Windows version also needs [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48145) (vc_redist.x86.exe)
+
+### OSX
+
+	The OSX version of DLS76 has been compiled using brew gfortran [homebrew](http://brew.sh/)
+	To install gfortran:
     
     brew install gfortran
 
-These scripts have been tested to work on recent versions of Windows, OS X, Ubuntu.
+Tools included
+==============
 
+ - focus
+ - kriber
+ - sginfo
+ - dls76       
+ - kriber      
+ - fo2cif      
+ - fo2hist     
+ - fo2strudat  
+ - strudat2cif 
+ - dlsall      
+ - cdlsall     
+ - multifocal  
 
 Installation from source
 ========================
@@ -47,13 +57,7 @@ Extract using:
 
     tar -xvzf focus_package-src.tar.gz
 
-Build using:
-
-    sh build_all.sh
-
-Install with python:
-
-    python setup.py install
-
-
-
+Build scripts:
+	./focus/focus_build_script.sh
+	./src/kriber/makefile
+	./src/dls76/makefile
