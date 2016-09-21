@@ -36,7 +36,7 @@ Tools included
  - cdlsall     
  - multifocal  
 
-(please see the [manual](../blob/master/manuals))
+(please see the [manual](../master/manuals))
 
 Installation from source
 ========================
@@ -58,6 +58,6 @@ Extract using:
     tar -xvzf focus_package-src.tar.gz
 
 Build scripts:
- - [./focus/focus_build_script.sh](../blob/master/focus/focus_build_script.sh)
- - [./src/kriber/makefile](../blob/master/src/kriber/makefile)
- - [./src/dls76/makefile](../blob/master/src/dls76/makefile)
+ - [./focus/focus_build_script.sh](../master/focus/focus_build_script.sh)
+ - [./src/kriber/makefile](../master/src/kriber/makefile)
+ - [./src/dls76/makefile](../master/src/dls76/makefile)
