@@ -17,7 +17,7 @@ print package_dir
 
 setup(
     name="focus_package",
-    version="1.1",
+    version="2.0",
     description="FOCUS package including DLS-76 and KRIBER",
 
     author="Stef Smeets",
