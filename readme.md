@@ -26,7 +26,7 @@ To install gfortran:
     brew install gfortran
 
 Programs included
-==============---
+=================
 
  - focus
  - kriber
