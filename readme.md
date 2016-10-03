@@ -67,8 +67,8 @@ Build scripts:
  - [./src/kriber/makefile](../master/src/kriber/makefile)
  - [./src/dls76/makefile](../master/src/dls76/makefile)
  
- References
- ==========
+References
+==========
  
 S. Smeets, L. B. McCusker, C. Baerlocher, E. Mugnaioli, and U. Kolb. [Using FOCUS to solve zeolite structures from three-dimensional electron diffraction data](http://dx.doi.org/10.1107/S0021889813014817). J. Appl. Crystallogr., 46:1017–1023, 2013
 
