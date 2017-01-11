@@ -608,7 +608,9 @@ C BK
       DATA ISYST/'TRIC','MON1','MON2','ORT','TET','HEX','RHO','CUB'/
       DATA LATOM/'ATOMS'/
       DATA IX/'X','Y','Z'/
-      DATA I40/40/
+C  Change the value after I40 here in case of SYMSIG error:
+C  DIMENSION CHECK: INCREASE DIMENSION OF SYMSIG (SEE SUBROUTINE DATIN)
+      DATA I40/200/
       DATA CHAR/'R','I',' ',',','='/
       DATA CHAR1/'      '/
       DATA CHAR2/'A','B','C','ALFA','BETA','GAMA'/
