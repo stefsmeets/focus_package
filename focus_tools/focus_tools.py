@@ -301,7 +301,7 @@ def fo2cif_entry():
     fns = sys.argv[1:]
     if not fns:
         print "No files given. \n \n >> Usage: fo2cif foc.out [...]"
-        exit()
+        sys.exit()
 
     strudat = open("strudat", "w")
     for fn in fns:
@@ -316,7 +316,7 @@ def fo2hist_entry():
     fns = sys.argv[1:]
     if not fns:
         print "No files given. \n \n >> Usage: fo2hist foc.out [...]"
-        exit()
+        sys.exit()
 
     for fn in fns:
         fo2hist(fn)
@@ -326,7 +326,7 @@ def fo2strudat_entry():
     fns = sys.argv[1:]
     if not fns:
         print "No files given. \n \n >> Usage: fo2strudat foc.out [...]"
-        exit()
+        sys.exit()
 
     strudat = open("strudat", "w")
     for fn in fns:

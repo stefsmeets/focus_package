@@ -38,11 +38,11 @@ def dls76(args=[]):
     if not os.path.exists(dls76_exe):
         if not os.path.exists(dls76_exe_dev):
             print "Cannot find", dls76_exe
-            exit()
+            sys.exit()
         dls76_exe = dls76_exe_dev
     if not os.path.exists(spgr_dat):
         print "Cannot find", spgr_dat
-        exit()
+        sys.exit()
 
     clean()
 
@@ -58,7 +58,7 @@ def dls76(args=[]):
 
     if not os.path.exists(inp):
         print "Cannot find", inp
-        exit()
+        sys.exit()
 
     inp = os.path.abspath(inp)
     out = os.path.abspath(out)

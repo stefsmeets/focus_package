@@ -37,7 +37,7 @@ def prepare():
     if not os.path.exists(kriber_exe):
         if not os.path.exists(kriber_exe_dev):
             print "Cannot find", kriber_exe
-            exit()
+            sys.exit()
         kriber_exe = kriber_exe_dev
 
     files = ["symdat", "distdat", "coseq"]
@@ -62,7 +62,7 @@ def extract_all_keys_from_strudat():
         strudat = open("strudat", "r")
     except IOError:
         print "Cannot find 'strudat' file"
-        exit()
+        sys.exit()
 
     for line in strudat:
         if line.startswith("*"):

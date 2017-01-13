@@ -54,7 +54,7 @@ def check_file(fn):
         f = open(fn)
     except IOError,e:
         print e
-        exit()
+        sys.exit()
     else:
         print 'OK'
         f.close()
@@ -76,7 +76,7 @@ def run(options, filenames):
         print '{} cores detected, are you sure you want to run {}*{} processes? [y/n]'.format(n_cores,len(filenames),n_procs)
         confirm = raw_input(' >> [y] ')
         if 'n' in confirm:
-            exit()
+            sys.exit()
 
     processes = []
 
@@ -168,7 +168,7 @@ processes for every file specified.
 
     if not args:
         parser.print_help()
-        exit()
+        sys.exit()
 
     run(options,args)
 
