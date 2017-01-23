@@ -15,8 +15,7 @@ Focus and all included scripts have been tested to work on recent versions of Wi
 
 ### Windows
 
-Windows users need to install [Python 2.7](https://www.python.org/downloads/), and make sure to click 'Add python.exe to Path' during setup  
-The Windows version also needs [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48145) (vc_redist.x86.exe)  
+The windows version includes all dependencies and can be used as is. In case Windows complains, it is sometimes needed to install [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48145) (vc_redist.x86.exe)
 
 ### OSX
 
