@@ -747,6 +747,7 @@ Static Void suche_raumgruppe_entry(_TEXT *t, Char *rn_, symmetrieoperator *tra)
   }
   if (tt.f != NULL)
     fclose(tt.f);
+    tt.f = NULL;
 }
 
 
@@ -6343,16 +6344,19 @@ int main(int argc, char *argv[])
       {
         m_DLSinput();
         fclose(dlsinp.f);
+        dlsinp.f = NULL;
       }      
       else if (!strncmp(befehl, "writc   ", sizeof(mt_befehl)))
       {
         m_DLSinput_tetcon();
         fclose(dlsinp.f);
+        dlsinp.f = NULL;
       }
       else if (!strncmp(befehl, "wriil   ", sizeof(mt_befehl)))
       {  
         m_LOADATinput();
         fclose(loadainp.f);
+        loadainp.f = NULL;
       }
       else
         printf(" ERROR  unknown command %.8s\n", befehl);
@@ -6366,6 +6370,7 @@ int main(int argc, char *argv[])
 
     if (list.f != NULL)
       fclose(list.f);
+      list.f = NULL;
     
     putchar('\n');
   } while (strncmp(befehl, "quit    ", sizeof(mt_befehl)) &&
@@ -6378,22 +6383,31 @@ int main(int argc, char *argv[])
     " ******************************************************************************\n");
   if (strudat.f != NULL)
     fclose(strudat.f);
+    strudat.f = NULL;
   if (symdat.f != NULL)
     fclose(symdat.f);
+    symdat.f = NULL;
   if (strudatn.f != NULL)
     fclose(strudatn.f);
+    strudatn.f = NULL;
   if (distdat.f != NULL)
     fclose(distdat.f);
+    distdat.f = NULL;
   if (dlsinp.f != NULL)
     fclose(dlsinp.f);
+    dlsinp.f = NULL;
   if (loadainp.f != NULL)
     fclose(loadainp.f);
+    loadainp.f = NULL;
   if (list.f != NULL)
     fclose(list.f);
+    list.f = NULL;
   if (cif.f != NULL);   // Stefs 05-07-2012
     fclose(cif.f);
+      cif.f = NULL;
   if (coseq.f != NULL)
     fclose(coseq.f);
+    coseq.f = NULL;
   exit(EXIT_SUCCESS);
   return 0;
 }
