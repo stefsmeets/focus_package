@@ -6211,6 +6211,7 @@ int main(int argc, char *argv[])
         m_initialize(&cif);
         m_write_cif(&cif, &strukturdaten, &rginfo);
         fclose(cif.f);
+        cif.f = NULL;
       }
       else if (!strncmp(befehl, "wricssr ", sizeof(mt_befehl)))
       {

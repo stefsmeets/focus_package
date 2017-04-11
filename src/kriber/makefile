@@ -1,6 +1,6 @@
 # Unix-Makefile for kriber
 
-CC=cc
+CC=gcc
 CCFLAGS = -O
 CCWARN  =
 
