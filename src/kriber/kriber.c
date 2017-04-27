@@ -6381,33 +6381,6 @@ int main(int argc, char *argv[])
     " *   end of program  KRIBER                                                   *\n");
   printf(
     " ******************************************************************************\n");
-  if (strudat.f != NULL)
-    fclose(strudat.f);
-    strudat.f = NULL;
-  if (symdat.f != NULL)
-    fclose(symdat.f);
-    symdat.f = NULL;
-  if (strudatn.f != NULL)
-    fclose(strudatn.f);
-    strudatn.f = NULL;
-  if (distdat.f != NULL)
-    fclose(distdat.f);
-    distdat.f = NULL;
-  if (dlsinp.f != NULL)
-    fclose(dlsinp.f);
-    dlsinp.f = NULL;
-  if (loadainp.f != NULL)
-    fclose(loadainp.f);
-    loadainp.f = NULL;
-  if (list.f != NULL)
-    fclose(list.f);
-    list.f = NULL;
-  if (cif.f != NULL);   // Stefs 05-07-2012
-    fclose(cif.f);
-      cif.f = NULL;
-  if (coseq.f != NULL)
-    fclose(coseq.f);
-    coseq.f = NULL;
   exit(EXIT_SUCCESS);
   return 0;
 }
