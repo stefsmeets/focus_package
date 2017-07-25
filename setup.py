@@ -1,24 +1,44 @@
 #!/usr/bin/env python
 
 from setuptools import setup, find_packages
-from os import path
-import sys
+import os, sys
 
-if sys.platform == "win32":
+from focus_tools import __version__
+
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
+if "win" in sys.argv:
+    platform = "win32"
+elif "macosx" in sys.argv:
+    platform = "darwin"
+elif "linux" in sys.argv:
+    platform = "linux2"
+else:
+    platform = sys.platform
+
+if platform == "win32":
     package_dir={"bin": "bin_windows/bin"}
-elif sys.platform == "darwin":
+    scripts = [os.path.join("bin_windows", fn) for fn in  ("libfftw3f-3.dll", "focus.exe", "sginfo.exe")]
+elif platform == "darwin":
     package_dir={"bin": "bin_osx/bin"}
-elif sys.platform == "linux2":
+    scripts = [os.path.join("bin_osx", fn) for fn in  ("focus", "sginfo")]
+elif platform == "linux2":
     package_dir={"bin": "bin_linux/bin"}
+    scripts = [os.path.join("bin_linux", fn) for fn in  ("focus", "sginfo")]
 else:
     raise RuntimeError
 
 print package_dir
+print scripts
+print
 
 setup(
     name="focus_package",
-    version="2.0",
+    version=__version__,
     description="FOCUS package including DLS-76 and KRIBER",
+    long_description=read('README.rst'),
+    description_file = "README.md",
 
     author="Stef Smeets",
     author_email="stef.smeets@mmk.su.se",
@@ -56,35 +76,7 @@ setup(
             'dlsall      = focus_tools.focus_tools:dlsall_entry',
             'cdlsall     = focus_tools.focus_tools:cdlsall_entry',
         ]
-    }
+    },
+
+    scripts=scripts
 )
-
-if sys.platform == "win32":
-    print """
- >> Installation complete. You can now remove this directory.
-
-Put these files in a location on your system path:
-
-    ./bin_windows/libfftw3f-3.dll
-    ./bin_windows/focus.exe
-    ./bin_windows/sginfo.exe
-"""
-else:    
-    print """
- >> Installation complete. You can remove this directory.
-
-Put these files in a location on your system path:
-"""
-    if sys.platform == "darwin":
-        print """     
-        ./bin_osx/focus
-        ./bin_osx/sginfo"""
-    elif sys.platform == "linux2":
-        print """     
-        ./bin_linux/focus
-        ./bin_linux/sginfo"""
-
-    
-
-
-

@@ -7,7 +7,7 @@ import time
 import argparse
 from multiprocessing import cpu_count
 
-__version__ = '2012-09-18'
+from __init__ import __version__
 
 
 class ProgressBar(object):
@@ -125,7 +125,7 @@ processes for every file specified.
 
 """ 
     
-    epilog = 'Updated: {}'.format(__version__)
+    epilog = 'Version: {}'.format(__version__)
     
     parser = argparse.ArgumentParser(#usage=usage,
                                     description=description,
