@@ -29,6 +29,7 @@ elif platform == "linux2":
 else:
     raise RuntimeError
 
+
 setup(
     name="focus_package",
     version=__version__,
