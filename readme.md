@@ -3,15 +3,10 @@ FOCUS
 
 FOCUS is a program for structure determination of zeolites. It combines automatic Fourier recycling with a specialized topology search specific to zeolites or zeolite-like materials. This makes it ideal for structure determination from powder of electron diffraction data, because the framework search can make up for the loss of information from peak overlap or dynamical effects. This package also includes KRIBER, DLS76, and several python helper scripts that work together to analyze the results, optimize the framework geometry, and produce CIF files.
 
-Quick installation
+Installation
 ==================
 
-Download the FOCUS package from the [releases page](https://github.com/stefsmeets/focus_package/releases).
-
-1.	Unzip or extract using:  `tar -xvzf focus-osx.tar.gz`
-2.	Install with python: `python setup.py install`
-
-Focus and all included scripts have been tested to work on recent versions of Windows, OS X, Ubuntu.
+    pip install focus-package
 
 ### Windows
 
