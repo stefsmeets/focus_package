@@ -4,7 +4,7 @@ FOCUS
 FOCUS is a program for structure determination of zeolites. It combines automatic Fourier recycling with a specialized topology search specific to zeolites or zeolite-like materials. This makes it ideal for structure determination from powder of electron diffraction data, because the framework search can make up for the loss of information from peak overlap or dynamical effects. This package also includes KRIBER, DLS76, and several python helper scripts that work together to analyze the results, optimize the framework geometry, and produce CIF files.
 
 Installation
-==================
+============
 
     pip install focus-package
 
@@ -66,6 +66,6 @@ References
  
 S. Smeets, L. B. McCusker, C. Baerlocher, E. Mugnaioli, and U. Kolb. [Using FOCUS to solve zeolite structures from three-dimensional electron diffraction data](http://dx.doi.org/10.1107/S0021889813014817). J. Appl. Crystallogr., 46:1017–1023, 2013
 
-R. W. Grosse-Kunstleve, L. B. McCusker, C. Baerlocher. [Zeolite structure determination from powder diffraction data: applications of the FOCUS method](http://dx.doi.org/10.1107/S0021889899003453). J. Appl. Crystallogr., 32():536-542, 1999
+R. W. Grosse-Kunstleve, L. B. McCusker, C. Baerlocher. [Zeolite structure determination from powder diffraction data: applications of the FOCUS method](http://dx.doi.org/10.1107/S0021889899003453). J. Appl. Crystallogr., 32:536-542, 1999
 
-R. W. Grosse-Kunstleve, L. B. McCusker, C. Baerlocher. [Powder diffraction data and crystal chemical information combined in an automated structure determination procedure for zeolites](http://dx.doi.org/10.1107/S0021889897005013). J. Appl. Crystallogr., 30():985-995, 1997
+R. W. Grosse-Kunstleve, L. B. McCusker, C. Baerlocher. [Powder diffraction data and crystal chemical information combined in an automated structure determination procedure for zeolites](http://dx.doi.org/10.1107/S0021889897005013). J. Appl. Crystallogr., 30:985-995, 1997
