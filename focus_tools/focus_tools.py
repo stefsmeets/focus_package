@@ -16,7 +16,7 @@ def move(fname, target):
 
 
 def parse_coseq(f, neighbours=100):
-    if isinstance(f, str):
+    if isinstance(f, (str, unicode)):
         f = open(f, "r")
     
     prev = ""
@@ -77,7 +77,7 @@ def invert_dict(d):
     return inv_map
 
 def section(f, intro="F", key=None):
-    if isinstance(f, str):
+    if isinstance(f, (str, unicode)):
         f = open(f, "r")
     
     start = ">Begin {}".format(key)
@@ -215,12 +215,12 @@ def get_R_from_dls76_out():
 
 
 def nfilea2cif(nfilea="nfilea.inp", cif="structure.cif", out=None):
-    if isinstance(nfilea, str):
+    if isinstance(nfilea, (str, unicode)):
         nfilea = open("nfilea.inp", "r")
-    if isinstance(cif, str):
+    if isinstance(cif, (str, unicode)):
         cif = open(cif, "r")
     if out:
-        if isinstance(out, str):
+        if isinstance(out, (str, unicode)):
             out = open(out, "w")
 
     for line in cif:
