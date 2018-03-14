@@ -14,7 +14,9 @@ Alternatively, you can download one of the packages from the (releases)[https://
 
 ### Windows
 
-For Windows, you can download a portable installation package from the (releases)[https://github.com/stefsmeets/focus_package/releases/latest] page. The portable version includes Python2.7 and all dependencies and can be used as is. In case Windows complains, it is sometimes needed to install [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48145) (vc_redist.x86.exe).
+For Windows, you can download a portable installation package from the [releases](https://github.com/stefsmeets/focus_package/releases/latest) page. The portable version includes Python2.7 and all dependencies and can be used as is. In case Windows complains, it is sometimes needed to install [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48145) (vc_redist.x86.exe).
+
+Check out the Windows related [issues](https://github.com/stefsmeets/focus_package/issues).
 
 ### OSX/Linux
 
