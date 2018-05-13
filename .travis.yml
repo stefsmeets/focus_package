@@ -1,0 +1,14 @@
+language: python
+
+python:
+  - 2.7
+
+addons:
+  apt:
+    packages:
+    - gfortran
+
+script:
+  - bash build_all.sh
+  - mv bin bin_linux
+  - python setup.py install
