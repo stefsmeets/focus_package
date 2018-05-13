@@ -1,0 +1,5 @@
+bin
+focus/build
+libtbx
+scons
+src/kriber/kriber.x
