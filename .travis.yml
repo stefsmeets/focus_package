@@ -10,3 +10,4 @@ addons:
 
 script:
   - bash build_all.sh
+  - python setup.py install
