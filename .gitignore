@@ -3,3 +3,5 @@ focus/build
 libtbx
 scons
 *.x
+*.o
+.python-version
