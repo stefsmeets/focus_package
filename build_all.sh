@@ -23,8 +23,8 @@ cd $base
 mkdir bin/
 mkdir bin/bin
 
-mv kriber/src/kriber.x    bin/bin
-mv dls76/src/dls76.x      bin/bin
+mv src/kriber/kriber.x    bin/bin
+mv src/dls76/dls76.x      bin/bin
 mv focus/build/exe/focus  bin/
 mv focus/build/exe/sginfo bin/
 
