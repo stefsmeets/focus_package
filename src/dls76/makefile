@@ -4,8 +4,8 @@
 CMPLR  = gfortran
 LINKR  = gfortran
 CFLAGS = -O2
-LFLAGS = -O2 -static
-# LFLAGS = -O2
+# LFLAGS = -O2 -static
+LFLAGS = -O2
 LLIBS =   
 ###########################################################################
 # OSX                                                                     #
