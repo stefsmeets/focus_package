@@ -100,10 +100,13 @@ def section(f, intro="F", key=None):
             yield num+" "+line.strip()
 
 
-def cut(line, col):
+def cut(line, col, label=None):
     inp = line.split()
     inp.pop(col)
-    return " ".join(inp)
+    if label:
+        return inp[0] + "-{} ".format(label) + " ".join(inp[1:])
+    else:
+        return " ".join(inp)
 
 def coseq_reduce(lines):
     last_key = ""
@@ -137,8 +140,19 @@ def coseq_reduce(lines):
     return d
 
 def get_coseq(fn):
-    lines = section(fn, key="coseq")
-    lines = [cut(line, 1) for line in lines]
+    if isinstance(fn, list) and len(fn) == 1:
+        fn = fn[0]
+
+    if isinstance(fn, list):
+        lines = []
+        for i, f in enumerate(fn):
+            s = section(f, key="coseq")
+            l = [cut(line, 1, label=str(i)) for line in s]
+            lines.extend(l)
+    else:
+        lines = section(fn, key="coseq")
+        lines = [cut(line, 1) for line in lines]
+    
     coseq = coseq_reduce(lines)
     return coseq
 
@@ -179,7 +193,10 @@ def fo2hist(f):
     items = sorted(dcounts.items(), key=itemgetter(1), reverse=True)
     total = sum(dcounts.values())
     
-    print f
+    if isinstance(f, list):
+        print("Summary of {} files".format(len(f)))
+    else:
+        print f
     print "fw              #      %  Natoms  ftc"
     for key, count in items:
         print "{:6} {:10d} {:6.3f} {:7d}  {}".format(key, count, float(count)/total, len(d[key]), dmap.get(key, "-"))
@@ -320,6 +337,9 @@ def fo2hist_entry():
 
     for fn in fns:
         fo2hist(fn)
+
+    print("-------------------------------------")
+    fo2hist(fns)
 
 
 def fo2strudat_entry():
