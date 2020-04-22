@@ -10,7 +10,7 @@ If you are already a python user ([Python2.7](https://www.python.org/)), you can
 
     pip install focus-package
 
-Alternatively, you can download one of the packages from the (releases)[https://github.com/stefsmeets/focus_package/releases/latest] page.
+Alternatively, you can download one of the packages from the [releases](https://github.com/stefsmeets/focus_package/releases/latest) page.
 
 ### Windows
 
