@@ -1,3 +1,8 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/focus-package)
+![PyPI](https://img.shields.io/pypi/v/focus-package.svg?style=flat)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/focus-package)
+
+
 FOCUS
 =====
 
