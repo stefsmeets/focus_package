@@ -2,6 +2,8 @@
 
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import map
+from builtins import str
 import os, sys
 
 from operator import itemgetter
@@ -18,7 +20,7 @@ def move(fname, target):
 
 
 def parse_coseq(f, neighbours=100):
-    if isinstance(f, (str, unicode)):
+    if isinstance(f, (str, str)):
         f = open(f, "r")
     
     prev = ""
@@ -59,7 +61,7 @@ def uniquify_list(lst):
 def uniquify_invert_dict(d):
     uniq_map = {}
     counts = {}
-    keys = d.keys()
+    keys = list(d.keys())
     keys.sort()
     for key in keys:
         values = tuple(d[key])
@@ -72,14 +74,14 @@ def uniquify_invert_dict(d):
 
 def invert_dict(d):
     inv_map = {}
-    for key, values in d.iteritems():
+    for key, values in d.items():
         for val in values:
             inv_map[val] = inv_map.get(val, [])
             inv_map[val].append(key)
     return inv_map
 
 def section(f, intro="F", key=None):
-    if isinstance(f, (str, unicode)):
+    if isinstance(f, (str, str)):
         f = open(f, "r")
     
     start = ">Begin {}".format(key)
@@ -164,7 +166,7 @@ def coseq_cmp(d, coseqdb):
 
     dcounts = {}
     dmap = {}
-    for k,v in d.items():
+    for k,v in list(d.items()):
         v = tuple(v)
         try:
             fw = di[v]
@@ -177,7 +179,7 @@ def coseq_cmp(d, coseqdb):
             except KeyError:
                 dcounts[fw] = 1
                 
-    for key in dcounts.keys():
+    for key in list(dcounts.keys()):
         v = tuple(d[key])
         try:
             ftc = rdb[v]
@@ -192,7 +194,7 @@ def fo2hist(f):
     d = get_coseq(f)
 
     dcounts, dmap = coseq_cmp(d, coseqdb)
-    items = sorted(dcounts.items(), key=itemgetter(1), reverse=True)
+    items = sorted(list(dcounts.items()), key=itemgetter(1), reverse=True)
     total = sum(dcounts.values())
     
     if isinstance(f, list):
@@ -210,7 +212,7 @@ def fo2strudat(f, fout=None, unique_only=True):
     if unique_only:
         d = get_coseq(f)
         dcounts, dmap = coseq_cmp(d, coseqdb)
-        keys = dcounts.keys()
+        keys = list(dcounts.keys())
 
         for line in lines:
             try:
@@ -234,12 +236,12 @@ def get_R_from_dls76_out():
 
 
 def nfilea2cif(nfilea="nfilea.inp", cif="structure.cif", out=None):
-    if isinstance(nfilea, (str, unicode)):
+    if isinstance(nfilea, (str, str)):
         nfilea = open("nfilea.inp", "r")
-    if isinstance(cif, (str, unicode)):
+    if isinstance(cif, (str, str)):
         cif = open(cif, "r")
     if out:
-        if isinstance(out, (str, unicode)):
+        if isinstance(out, (str, str)):
             out = open(out, "w")
 
     for line in cif:

@@ -2,6 +2,10 @@
 
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
+from builtins import input
+from builtins import range
+from builtins import object
 import sys
 import os
 import subprocess as sp
@@ -76,7 +80,7 @@ def run(options, filenames):
     assert n_procs >= 0, 'Expected a positive number of processors'
     if n_procs*len(filenames) > n_cores:
         print('{} cores detected, are you sure you want to run {}*{} processes? [y/n]'.format(n_cores,len(filenames),n_procs))
-        confirm = raw_input(' >> [y] ')
+        confirm = input(' >> [y] ')
         if 'n' in confirm:
             sys.exit()
 
@@ -86,7 +90,7 @@ def run(options, filenames):
         check_file(fn)
 
     print('Starting processes...')
-    for i in xrange(n_procs):
+    for i in range(n_procs):
         for fn in filenames:
             #fnout = fn.replace('.inp','_{}.out'.format(i))
             fnout = os.path.splitext(fn)[0] + '_{}.out'.format(i)
