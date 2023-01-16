@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-
-from __future__ import print_function
 import os
 import sys
 import shutil
@@ -60,8 +57,8 @@ def move(fname, target):
 def extract_all_keys_from_strudat():
     keys = []
     try:
-        strudat = open("strudat", "r")
-    except IOError:
+        strudat = open("strudat")
+    except OSError:
         print("Cannot find 'strudat' file")
         sys.exit()
 
@@ -89,7 +86,7 @@ def strudat2cif(args=[], keys=[], rename=True, verbose=True):
         if out[0]:
             for line in out[0].split("\n"):
                 if "ERROR" in line:
-                    raise RuntimeError("{}  ->  KRIBER {}".format(key, line))
+                    raise RuntimeError(f"{key}  ->  KRIBER {line}")
         if out[1]:
             print(out[1])
 
@@ -118,7 +115,7 @@ def strudat2dls(args=[], keys=[], verbose=True):
         if out[0]:
             for line in out[0].split("\n"):
                 if "ERROR" in line:
-                    raise RuntimeError("{}  ->  KRIBER {}".format(key, line))
+                    raise RuntimeError(f"{key}  ->  KRIBER {line}")
         if out[1]:
             print(out[1])
 

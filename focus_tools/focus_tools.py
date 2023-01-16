@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-
-from __future__ import print_function
-from __future__ import absolute_import
-from builtins import map
-from builtins import str
 import os, sys
 
 from operator import itemgetter
@@ -21,7 +15,7 @@ def move(fname, target):
 
 def parse_coseq(f, neighbours=100):
     if isinstance(f, (str, str)):
-        f = open(f, "r")
+        f = open(f)
     
     prev = ""
     db  = {}
@@ -82,10 +76,10 @@ def invert_dict(d):
 
 def section(f, intro="F", key=None):
     if isinstance(f, (str, str)):
-        f = open(f, "r")
+        f = open(f)
     
-    start = ">Begin {}".format(key)
-    end   = ">End {}".format(key)
+    start = f">Begin {key}"
+    end   = f">End {key}"
     
     out = False
     num = intro+"0000"
@@ -108,7 +102,7 @@ def cut(line, col, label=None):
     inp = line.split()
     inp.pop(col)
     if label:
-        return inp[0] + "-{} ".format(label) + " ".join(inp[1:])
+        return inp[0] + f"-{label} " + " ".join(inp[1:])
     else:
         return " ".join(inp)
 
@@ -198,13 +192,13 @@ def fo2hist(f):
     total = sum(dcounts.values())
     
     if isinstance(f, list):
-        print("Summary of {} files".format(len(f)))
+        print(f"Summary of {len(f)} files")
     else:
         print(f)
     print("fw              #      %  Natoms  ftc")
     for key, count in items:
         print("{:6} {:10d} {:6.3f} {:7d}  {}".format(key, count, float(count)/total, len(d[key]), dmap.get(key, "-")))
-    print("Total: {}".format(total))
+    print(f"Total: {total}")
     print()
 
 def fo2strudat(f, fout=None, unique_only=True):
@@ -227,7 +221,7 @@ def fo2strudat(f, fout=None, unique_only=True):
             print(line.split(None, 1)[0], file=fout)
 
 def get_R_from_dls76_out():
-    f = open("dls76.out", "r")
+    f = open("dls76.out")
 
     for line in f:
         if line.startswith("0R=SQRT( SUM(W*(DO-D))**2 / SUM(W*DO)**2 )="):
@@ -237,9 +231,9 @@ def get_R_from_dls76_out():
 
 def nfilea2cif(nfilea="nfilea.inp", cif="structure.cif", out=None):
     if isinstance(nfilea, (str, str)):
-        nfilea = open("nfilea.inp", "r")
+        nfilea = open("nfilea.inp")
     if isinstance(cif, (str, str)):
-        cif = open(cif, "r")
+        cif = open(cif)
     if out:
         if isinstance(out, (str, str)):
             out = open(out, "w")
@@ -250,11 +244,11 @@ def nfilea2cif(nfilea="nfilea.inp", cif="structure.cif", out=None):
 
     for line in nfilea:
         if line.startswith("NATOM"):
-            print("{}  {}  {}  {}".format(line[7:13], line[13:21], line[21:29], line[29:37]), file=out)
+            print(f"{line[7:13]}  {line[13:21]}  {line[21:29]}  {line[29:37]}", file=out)
 
 
 def enable_cdls():
-    fin = open("dlsinp", "r")
+    fin = open("dlsinp")
     fout = open("dlsinp_new", "w")
 
     for line in fin:
@@ -275,7 +269,7 @@ def dlsall(threshold=0.01, refine_cell=False):
 
     keys = pykriber.extract_all_keys_from_strudat()
 
-    print("Threshold = {}".format(threshold))
+    print(f"Threshold = {threshold}")
     print()
     print("framework    Rval")
     for key in keys:
@@ -287,7 +281,7 @@ def dlsall(threshold=0.01, refine_cell=False):
         pydls.dls76(args=["dlsinp"])
         rval = get_R_from_dls76_out()
         marker  = "**" if rval < threshold else "  \n"
-        print("{:10s} {:.4f} {}".format(key, rval, marker), end=' ')
+        print(f"{key:10s} {rval:.4f} {marker}", end=' ')
 
         if rval < threshold:
             pykriber.strudat2cif(args=["addo"], keys=key, verbose=False)
