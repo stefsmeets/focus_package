@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
+from __future__ import absolute_import
 import os, sys
 
 from operator import itemgetter
@@ -31,7 +33,7 @@ def parse_coseq(f, neighbours=100):
         name  = inp[0]
         coseq = tuple(map(int,inp[1:neighbours+1]))
 
-        if rdb.has_key(coseq):
+        if coseq in rdb:
             if name not in rdb[coseq]:
                 rdb[coseq].append(name)
             else:
@@ -61,7 +63,7 @@ def uniquify_invert_dict(d):
     keys.sort()
     for key in keys:
         values = tuple(d[key])
-        if uniq_map.has_key(values):
+        if values in uniq_map:
             pass
         else:
             uniq_map[values] = key
@@ -130,7 +132,7 @@ def coseq_reduce(lines):
         assert len(inp) == 10
         seq.append(inp)
     # remove empty key
-    if d.has_key(""):
+    if "" in d:
         del d[""]
     # ensure last FW is added too
     if key:
@@ -167,7 +169,7 @@ def coseq_cmp(d, coseqdb):
         try:
             fw = di[v]
         except KeyError:
-            print "KeyError:", v
+            print("KeyError:", v)
             fw = None
         else:
             try:
@@ -196,12 +198,12 @@ def fo2hist(f):
     if isinstance(f, list):
         print("Summary of {} files".format(len(f)))
     else:
-        print f
-    print "fw              #      %  Natoms  ftc"
+        print(f)
+    print("fw              #      %  Natoms  ftc")
     for key, count in items:
-        print "{:6} {:10d} {:6.3f} {:7d}  {}".format(key, count, float(count)/total, len(d[key]), dmap.get(key, "-"))
-    print "Total: {}".format(total)
-    print
+        print("{:6} {:10d} {:6.3f} {:7d}  {}".format(key, count, float(count)/total, len(d[key]), dmap.get(key, "-")))
+    print("Total: {}".format(total))
+    print()
 
 def fo2strudat(f, fout=None, unique_only=True):
     lines = section(f, key="Framework")
@@ -217,10 +219,10 @@ def fo2strudat(f, fout=None, unique_only=True):
                 key = line.strip()
                 title = ""
             if key in keys:
-                print >> fout, title  
+                print(title, file=fout)  
     else:
         for line in lines:
-            print >> fout, line.split(None, 1)[0]
+            print(line.split(None, 1)[0], file=fout)
 
 def get_R_from_dls76_out():
     f = open("dls76.out", "r")
@@ -242,11 +244,11 @@ def nfilea2cif(nfilea="nfilea.inp", cif="structure.cif", out=None):
 
     for line in cif:
         if not (line.startswith("O") or line.startswith("T")):
-            print >> out, line
+            print(line, file=out)
 
     for line in nfilea:
         if line.startswith("NATOM"):
-            print >> out, "{}  {}  {}  {}".format(line[7:13], line[13:21], line[21:29], line[29:37])
+            print("{}  {}  {}  {}".format(line[7:13], line[13:21], line[21:29], line[29:37]), file=out)
 
 
 def enable_cdls():
@@ -258,7 +260,7 @@ def enable_cdls():
         if line == "DLS-76  -5    30     0         2                1":
             line = "DLS-76  -5    30     1         2                1"
 
-        print >> fout, line
+        print(line, file=fout)
     fin.close()
     fout.close()
 
@@ -266,14 +268,14 @@ def enable_cdls():
 
 
 def dlsall(threshold=0.01, refine_cell=False):
-    import pykriber
-    import pydls
+    from . import pykriber
+    from . import pydls
 
     keys = pykriber.extract_all_keys_from_strudat()
 
-    print "Threshold = {}".format(threshold)
-    print
-    print "framework    Rval"
+    print("Threshold = {}".format(threshold))
+    print()
+    print("framework    Rval")
     for key in keys:
         pykriber.strudat2dls(args=["addo"], keys=key)
 
@@ -283,13 +285,13 @@ def dlsall(threshold=0.01, refine_cell=False):
         pydls.dls76(args=["dlsinp"])
         rval = get_R_from_dls76_out()
         marker  = "**" if rval < threshold else "  \n"
-        print "{:10s} {:.4f} {}".format(key, rval, marker),
+        print("{:10s} {:.4f} {}".format(key, rval, marker), end=' ')
 
         if rval < threshold:
             pykriber.strudat2cif(args=["addo"], keys=key, verbose=False)
 
             nfilea2cif(cif=key+".cif", out=key+"_dls.cif")
-            print " >> Wrote file {}".format(key+"_dls.cif")
+            print(" >> Wrote file {}".format(key+"_dls.cif"))
 
 
 def cdlsall(threshold=0.01):
@@ -317,7 +319,7 @@ def cdlsall_entry():
 def fo2cif_entry():
     fns = sys.argv[1:]
     if not fns:
-        print "No files given. \n \n >> Usage: fo2cif foc.out [...]"
+        print("No files given. \n \n >> Usage: fo2cif foc.out [...]")
         sys.exit()
 
     strudat = open("strudat", "w")
@@ -325,14 +327,14 @@ def fo2cif_entry():
         fo2strudat(fn, fout=strudat)
     strudat.close()
 
-    import pykriber
+    from . import pykriber
     pykriber.strudat2cif()
 
 
 def fo2hist_entry():
     fns = sys.argv[1:]
     if not fns:
-        print "No files given. \n \n >> Usage: fo2hist foc.out [...]"
+        print("No files given. \n \n >> Usage: fo2hist foc.out [...]")
         sys.exit()
 
     for fn in fns:
@@ -345,7 +347,7 @@ def fo2hist_entry():
 def fo2strudat_entry():
     fns = sys.argv[1:]
     if not fns:
-        print "No files given. \n \n >> Usage: fo2strudat foc.out [...]"
+        print("No files given. \n \n >> Usage: fo2strudat foc.out [...]")
         sys.exit()
 
     strudat = open("strudat", "w")

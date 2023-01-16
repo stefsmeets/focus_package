@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
 import os
 import sys
 import shutil
@@ -36,7 +37,7 @@ def prepare():
 
     if not os.path.exists(kriber_exe):
         if not os.path.exists(kriber_exe_dev):
-            print "Cannot find", kriber_exe
+            print("Cannot find", kriber_exe)
             sys.exit()
         kriber_exe = kriber_exe_dev
 
@@ -45,7 +46,7 @@ def prepare():
         assert os.path.exists(f)
 
     if not os.path.exists("strudat"):
-        print ">> Warning: Cannot find 'strudat' file\n"
+        print(">> Warning: Cannot find 'strudat' file\n")
 
     return kriber_exe
 
@@ -61,7 +62,7 @@ def extract_all_keys_from_strudat():
     try:
         strudat = open("strudat", "r")
     except IOError:
-        print "Cannot find 'strudat' file"
+        print("Cannot find 'strudat' file")
         sys.exit()
 
     for line in strudat:
@@ -90,11 +91,11 @@ def strudat2cif(args=[], keys=[], rename=True, verbose=True):
                 if "ERROR" in line:
                     raise RuntimeError("{}  ->  KRIBER {}".format(key, line))
         if out[1]:
-            print out[1]
+            print(out[1])
 
         move("structure.cif", key+".cif")
         if verbose:
-            print " >> Wrote file {}".format(key+".cif")
+            print(" >> Wrote file {}".format(key+".cif"))
 
     clean()
 
@@ -119,7 +120,7 @@ def strudat2dls(args=[], keys=[], verbose=True):
                 if "ERROR" in line:
                     raise RuntimeError("{}  ->  KRIBER {}".format(key, line))
         if out[1]:
-            print out[1]
+            print(out[1])
 
         # move("structure.cif", key+".cif")
         # print " >> Wrote file {}".format(key+".cif")
