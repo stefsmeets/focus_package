@@ -3,10 +3,6 @@
 from setuptools import setup, find_packages
 import os, sys
 
-from focus_tools import __version__
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 if "win" in sys.argv:
     platform = "win32"
@@ -32,20 +28,26 @@ else:
 
 setup(
     name="focus_package",
-    version=__version__,
+    version="3.0.0",
     description="FOCUS package including DLS-76 and KRIBER",
-    long_description=read('README.rst'),
     description_file = "README.md",
 
     author="Stef Smeets",
-    author_email="stef.smeets@mmk.su.se",
-    maintainer="Stef Smeets",
-    maintainer_email="stef.smeets@mmk.su.se",
-    license="GPL",
+    author_email="s.smeets@esciencecenter.nl",
+    license="GPLv2",
     url="https://github.com/stefsmeets/focus_package",
 
     classifiers=[
-        'Programming Language :: Python :: 2.7',
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
+        'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+        'Natural Language :: English',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Topic :: Scientific/Engineering',
     ],
 
     package_dir=package_dir,
