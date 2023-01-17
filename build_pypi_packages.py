@@ -13,7 +13,7 @@ platforms = (
     ('win32', 'win_amd64'),
     ('linux', 'manylinux1_x86_64'),
     ('darwin','macosx_10_9_x86_64'),
-    ('darwin','macosx_11_0_arm64'),
+    # ('darwin','macosx_11_0_arm64'),  # no way of currently building this
 )
 
 for plat, tag in platforms:
