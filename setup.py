@@ -3,13 +3,12 @@
 from setuptools import setup, find_packages
 import os, sys
 
-
 if "win" in sys.argv:
     platform = "win32"
 elif "macosx" in sys.argv:
     platform = "darwin"
 elif "linux" in sys.argv:
-    platform = "linux2"
+    platform = "linux"
 else:
     platform = sys.platform
 
@@ -19,12 +18,11 @@ if platform == "win32":
 elif platform == "darwin":
     package_dir={"bin": "bin_osx/bin"}
     scripts = [os.path.join("bin_osx", fn) for fn in  ("focus", "sginfo")]
-elif platform == "linux2":
+elif platform == "linux":
     package_dir={"bin": "bin_linux/bin"}
     scripts = [os.path.join("bin_linux", fn) for fn in  ("focus", "sginfo")]
 else:
     raise RuntimeError
-
 
 setup(
     name="focus_package",
@@ -77,5 +75,7 @@ setup(
         ]
     },
 
-    scripts=scripts
+    data_files = [
+        ('bin', scripts)
+    ],
 )
