@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import os
 import sys
 import shutil
@@ -28,26 +26,17 @@ def setup():
 
 
 def prepare():
-    kriber_exe = os.path.join(drc, "..", "bin", "kriber.x")
-    kriber_exe_dev = os.path.join(drc, "..", "bin_windows", "bin", "kriber.x") # check developer path
-
     clean()
     setup()
-
-    if not os.path.exists(kriber_exe):
-        if not os.path.exists(kriber_exe_dev):
-            print "Cannot find", kriber_exe
-            sys.exit()
-        kriber_exe = kriber_exe_dev
 
     files = ["symdat", "distdat", "coseq"]
     for f in files:
         assert os.path.exists(f)
 
     if not os.path.exists("strudat"):
-        print ">> Warning: Cannot find 'strudat' file\n"
+        print(">> Warning: Cannot find 'strudat' file\n")
 
-    return kriber_exe
+    return '_kriber.x'
 
 
 def move(fname, target):
@@ -59,9 +48,9 @@ def move(fname, target):
 def extract_all_keys_from_strudat():
     keys = []
     try:
-        strudat = open("strudat", "r")
-    except IOError:
-        print "Cannot find 'strudat' file"
+        strudat = open("strudat")
+    except OSError:
+        print("Cannot find 'strudat' file")
         sys.exit()
 
     for line in strudat:
@@ -88,13 +77,13 @@ def strudat2cif(args=[], keys=[], rename=True, verbose=True):
         if out[0]:
             for line in out[0].split("\n"):
                 if "ERROR" in line:
-                    raise RuntimeError("{}  ->  KRIBER {}".format(key, line))
+                    raise RuntimeError(f"{key}  ->  KRIBER {line}")
         if out[1]:
-            print out[1]
+            print(out[1])
 
         move("structure.cif", key+".cif")
         if verbose:
-            print " >> Wrote file {}".format(key+".cif")
+            print(" >> Wrote file {}".format(key+".cif"))
 
     clean()
 
@@ -117,9 +106,9 @@ def strudat2dls(args=[], keys=[], verbose=True):
         if out[0]:
             for line in out[0].split("\n"):
                 if "ERROR" in line:
-                    raise RuntimeError("{}  ->  KRIBER {}".format(key, line))
+                    raise RuntimeError(f"{key}  ->  KRIBER {line}")
         if out[1]:
-            print out[1]
+            print(out[1])
 
         # move("structure.cif", key+".cif")
         # print " >> Wrote file {}".format(key+".cif")

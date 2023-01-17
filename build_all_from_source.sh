@@ -21,10 +21,9 @@ make
 cd $base
 
 mkdir bin/
-mkdir bin/bin
 
-mv kriber/src/kriber.x    bin/bin
-mv dls76/src/dls76.x      bin/bin
+mv kriber/src/kriber.x    bin/_kriber.x
+mv dls76/src/dls76.x      bin/_dls76.x
 mv focus/build/exe/focus  bin/
 mv focus/build/exe/sginfo bin/
 

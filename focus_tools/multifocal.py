@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import sys
 import os
 import subprocess as sp
@@ -7,10 +5,10 @@ import time
 import argparse
 from multiprocessing import cpu_count
 
-from __init__ import __version__
+from .__init__ import __version__
 
 
-class ProgressBar(object):
+class ProgressBar:
     """docstring for ProgressBar"""
     def __init__(self):
         
@@ -39,7 +37,7 @@ class ProgressBar(object):
 
 
 def resize_terminal(height=40,width=80):
-    print "\x1b[8;{};{};t".format(height,width)
+    print(f"\x1b[8;{height};{width};t")
 
 
 def printer(data):
@@ -49,14 +47,14 @@ def printer(data):
 
 
 def check_file(fn):
-    print 'Checking', fn, '...',
+    print('Checking', fn, '...', end=' ')
     try:
         f = open(fn)
-    except IOError,e:
-        print e
+    except OSError as e:
+        print(e)
         sys.exit()
     else:
-        print 'OK'
+        print('OK')
         f.close()
 
 
@@ -73,8 +71,8 @@ def run(options, filenames):
 
     assert n_procs >= 0, 'Expected a positive number of processors'
     if n_procs*len(filenames) > n_cores:
-        print '{} cores detected, are you sure you want to run {}*{} processes? [y/n]'.format(n_cores,len(filenames),n_procs)
-        confirm = raw_input(' >> [y] ')
+        print(f'{n_cores} cores detected, are you sure you want to run {len(filenames)}*{n_procs} processes? [y/n]')
+        confirm = input(' >> [y] ')
         if 'n' in confirm:
             sys.exit()
 
@@ -83,14 +81,14 @@ def run(options, filenames):
     for fn in filenames:
         check_file(fn)
 
-    print 'Starting processes...'
-    for i in xrange(n_procs):
+    print('Starting processes...')
+    for i in range(n_procs):
         for fn in filenames:
             #fnout = fn.replace('.inp','_{}.out'.format(i))
-            fnout = os.path.splitext(fn)[0] + '_{}.out'.format(i)
+            fnout = os.path.splitext(fn)[0] + f'_{i}.out'
                 
             cmd = ['focus', fn, n_runs]
-            print '     >> focus', fn, n_runs, focus_args, '...',
+            print('     >> focus', fn, n_runs, focus_args, '...', end=' ')
 
             if focus_args:
                 cmd.append(focus_args)
@@ -98,9 +96,9 @@ def run(options, filenames):
             if not options.dry_run:
                 p = sp.Popen(cmd,shell=False,stdout=open(fnout,'wb'))
                 processes.append(p)
-                print 'started'
+                print('started')
             else:
-                print 'not started'
+                print('not started')
             
         if n_procs != 1:
             time.sleep(1) # prevent equal random seeds
@@ -125,7 +123,7 @@ processes for every file specified.
 
 """ 
     
-    epilog = 'Version: {}'.format(__version__)
+    epilog = f'Version: {__version__}'
     
     parser = argparse.ArgumentParser(#usage=usage,
                                     description=description,
