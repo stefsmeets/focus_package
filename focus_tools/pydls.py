@@ -29,15 +29,10 @@ def move_files():
             os.rename(f, target)
 
 def dls76(args=[]):
-    dls76_exe = os.path.join(drc, "..", "bin", "dls76.x")
-    dls76_exe_dev = os.path.join(drc, "..", "bin_windows", "bin", "dls76.x") # check developer path
     spgr_dat  = os.path.join(drc, "..", "resources", "spgr.dat")
 
-    if not os.path.exists(dls76_exe):
-        if not os.path.exists(dls76_exe_dev):
-            print("Cannot find", dls76_exe)
-            sys.exit()
-        dls76_exe = dls76_exe_dev
+    dls76_exe = '_dls76.x'
+
     if not os.path.exists(spgr_dat):
         print("Cannot find", spgr_dat)
         sys.exit()
@@ -60,10 +55,6 @@ def dls76(args=[]):
 
     inp = os.path.abspath(inp)
     out = os.path.abspath(out)
-
-    # print inp
-    # print out
-    # print spgr_dat
 
     shutil.copyfile(inp,      "fort.7")
     shutil.copyfile(spgr_dat, "fort.10")

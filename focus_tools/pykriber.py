@@ -26,17 +26,8 @@ def setup():
 
 
 def prepare():
-    kriber_exe = os.path.join(drc, "..", "bin", "kriber.x")
-    kriber_exe_dev = os.path.join(drc, "..", "bin_windows", "bin", "kriber.x") # check developer path
-
     clean()
     setup()
-
-    if not os.path.exists(kriber_exe):
-        if not os.path.exists(kriber_exe_dev):
-            print("Cannot find", kriber_exe)
-            sys.exit()
-        kriber_exe = kriber_exe_dev
 
     files = ["symdat", "distdat", "coseq"]
     for f in files:
@@ -45,7 +36,7 @@ def prepare():
     if not os.path.exists("strudat"):
         print(">> Warning: Cannot find 'strudat' file\n")
 
-    return kriber_exe
+    return '_kriber.x'
 
 
 def move(fname, target):
