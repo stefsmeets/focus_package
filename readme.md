@@ -1,6 +1,5 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/focus-package)
 ![PyPI](https://img.shields.io/pypi/v/focus-package.svg?style=flat)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/focus-package)
 
 
 FOCUS
@@ -11,28 +10,12 @@ FOCUS is a program for structure determination of zeolites. It combines automati
 Installation
 ============
 
-If you are already a python user ([Python2.7](https://www.python.org/)), you can install via pip:
+If you are a python user, you can install via pip:
 
     pip install focus-package
 
 Alternatively, you can download one of the packages from the [releases](https://github.com/stefsmeets/focus_package/releases/latest) page.
 
-### Windows
-
-For Windows, you can download a portable installation package from the [releases](https://github.com/stefsmeets/focus_package/releases/latest) page. The portable version includes Python2.7 and all dependencies and can be used as is. In case Windows complains, it is sometimes needed to install [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48145) (vc_redist.x86.exe).
-
-Check out the Windows related [issues](https://github.com/stefsmeets/focus_package/issues).
-
-### OSX/Linux
-
-The OSX version of DLS76 has been compiled using brew gfortran [homebrew](http://brew.sh/)  
-To install gfortran:
-    
-    brew install gfortran
-
-The OSX/Linux versions should be installed using:
-
-    python setup.py install
 
 Programs included
 =================
@@ -50,37 +33,30 @@ Programs included
  - cdlsall     
  - multifocal  
 
-(please see the [manual](../master/manuals))
+Please see the [manual](../master/manuals) for instructions.
 
 Installation from source
 ========================
 
 Extra dependencies for installation from source:
 
-### OS X
-
-- command line tools (xcode-select install)
-- gfortran
-
-### Linux
-
-- svn
-- curl
-
-Extract using:
-
-    tar -xvzf focus_package-src.tar.gz
-
 Build scripts:
  - [./focus/focus_build_script.sh](../master/focus/focus_build_script.sh)
  - [./src/kriber/makefile](../master/src/kriber/makefile)
  - [./src/dls76/makefile](../master/src/dls76/makefile)
  
+Building the package
+====================
+
+To build the packages for the different platforms:
+
+- [`build_pypi_packages.py`](../master/build_pypi_packages.py)
+
 References
 ==========
- 
-S. Smeets, L. B. McCusker, C. Baerlocher, E. Mugnaioli, and U. Kolb. [Using FOCUS to solve zeolite structures from three-dimensional electron diffraction data](http://dx.doi.org/10.1107/S0021889813014817). J. Appl. Crystallogr., 46:1017–1023, 2013
 
-R. W. Grosse-Kunstleve, L. B. McCusker, C. Baerlocher. [Zeolite structure determination from powder diffraction data: applications of the FOCUS method](http://dx.doi.org/10.1107/S0021889899003453). J. Appl. Crystallogr., 32:536-542, 1999
+- S. Smeets, L. B. McCusker, C. Baerlocher, E. Mugnaioli, and U. Kolb. [Using FOCUS to solve zeolite structures from three-dimensional electron diffraction data](http://dx.doi.org/10.1107/S0021889813014817). J. Appl. Crystallogr., 46:1017–1023, 2013
 
-R. W. Grosse-Kunstleve, L. B. McCusker, C. Baerlocher. [Powder diffraction data and crystal chemical information combined in an automated structure determination procedure for zeolites](http://dx.doi.org/10.1107/S0021889897005013). J. Appl. Crystallogr., 30:985-995, 1997
+- R. W. Grosse-Kunstleve, L. B. McCusker, C. Baerlocher. [Zeolite structure determination from powder diffraction data: applications of the FOCUS method](http://dx.doi.org/10.1107/S0021889899003453). J. Appl. Crystallogr., 32:536-542, 1999
+
+- R. W. Grosse-Kunstleve, L. B. McCusker, C. Baerlocher. [Powder diffraction data and crystal chemical information combined in an automated structure determination procedure for zeolites](http://dx.doi.org/10.1107/S0021889897005013). J. Appl. Crystallogr., 30:985-995, 1997
