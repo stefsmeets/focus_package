@@ -45,13 +45,6 @@ Build scripts:
  - [./src/kriber/makefile](../master/src/kriber/makefile)
  - [./src/dls76/makefile](../master/src/dls76/makefile)
  
-Building the package
-====================
-
-To build the packages for the different platforms:
-
-- [`build_pypi_packages.py`](../master/build_pypi_packages.py)
-
 References
 ==========
 
