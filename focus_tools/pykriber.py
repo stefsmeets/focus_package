@@ -1,26 +1,32 @@
 import os
 import sys
 import shutil
-
+from pathlib import Path
 import subprocess as sp
 from subprocess import PIPE, STDOUT
+import platform
 
-drc = os.path.abspath(os.path.dirname( __file__ )) # get path of program
+if sys.version_info < (3, 10):
+    from importlib_resources import files
+else:
+    from importlib.resources import files
 
 
 def clean():
-    files = ["symdat", "distdat", "coseq"]
-    for f in files:
-        if os.path.exists(f):
-            os.remove(f)
+    filenames = ["symdat", "distdat", "coseq"]
+    for filename in filenames:
+        if Path(filename).exists():
+            os.remove(filename)
 
 
 def setup():
-    files = ["symdat", "distdat", "coseq"]
-    for f in files:
+    filenames = ["symdat", "distdat", "coseq"]
 
-        src = os.path.join(drc, "..", "resources", f)
-        target = os.path.join(os.path.abspath("."), f)
+    resources = files('focus_tools.resources')
+    
+    for filename in filenames:
+        src = resources / filename
+        target = Path('.').absolute() / filename
 
         shutil.copyfile(src, target)
 
@@ -29,18 +35,29 @@ def prepare():
     clean()
     setup()
 
-    files = ["symdat", "distdat", "coseq"]
-    for f in files:
-        assert os.path.exists(f)
+    filenames = ["symdat", "distdat", "coseq"]
+    for filename in filenames:
+        assert Path(filename).exists()
 
-    if not os.path.exists("strudat"):
+    if not Path("strudat").exists():
         print(">> Warning: Cannot find 'strudat' file\n")
 
-    return '_kriber.x'
+    sysname = platform.system()
+
+    if sysname == 'Linux':
+        bin_dir = files('focus_tools.bin_linux')
+    elif sysname == 'Darwin':
+        bin_dir = files('focus_tools.bin_osx')
+    elif sysname == 'Windows':
+        bin_dir = files('focus_tools.bin_windows')
+    else:
+        raise RuntimeError(f'Unknown platform: {sysname}')
+
+    return bin_dir / '_kriber.x'
 
 
 def move(fname, target):
-    if os.path.exists(target):
+    if Path(target).exists():
         os.remove(target)
     os.rename(fname, target)
 
@@ -72,14 +89,20 @@ def strudat2cif(args=[], keys=[], rename=True, verbose=True):
     
     for key in keys:
         p = sp.Popen(['kriber', 'reacs'] + args + ['wricif', 'exit'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
-        out = p.communicate(input=key)
+        out = p.communicate(input=key.encode())
+        stdout, stderr = out
 
-        if out[0]:
-            for line in out[0].split("\n"):
-                if "ERROR" in line:
+        if stdout:
+            stdout = stdout.decode()
+
+            for line in stdout.split('\n'):
+                if line.startswith('Traceback'):
+                    print(stdout)
+                    exit()
+                elif "ERROR" in line:
                     raise RuntimeError(f"{key}  ->  KRIBER {line}")
-        if out[1]:
-            print(out[1])
+        if stderr:
+            print(stderr.decode())
 
         move("structure.cif", key+".cif")
         if verbose:
@@ -101,14 +124,20 @@ def strudat2dls(args=[], keys=[], verbose=True):
 
     for key in keys:
         p = sp.Popen(['kriber', 'reacs'] + args + ['wriid', 'exit'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
-        out = p.communicate(input=key)
+        out = p.communicate(input=key.encode())
+        stdout, stderr = out
 
-        if out[0]:
-            for line in out[0].split("\n"):
-                if "ERROR" in line:
+        if stdout:
+            stdout = stdout.decode()
+
+            for line in stdout.split('\n'):
+                if line.startswith('Traceback'):
+                    print(stdout)
+                    exit()
+                elif "ERROR" in line:
                     raise RuntimeError(f"{key}  ->  KRIBER {line}")
-        if out[1]:
-            print(out[1])
+        if stderr:
+            print(stderr.decode())
 
         # move("structure.cif", key+".cif")
         # print " >> Wrote file {}".format(key+".cif")

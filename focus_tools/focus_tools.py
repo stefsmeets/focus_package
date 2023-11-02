@@ -2,9 +2,14 @@ import os, sys
 
 from operator import itemgetter
 from itertools import groupby
+from pathlib import Path
 
 
-drc = os.path.abspath(os.path.dirname( __file__ )) # get path of program
+if sys.version_info < (3, 10):
+    from importlib_resources import files
+else:
+    from importlib.resources import files
+
 
 
 def move(fname, target):
@@ -14,7 +19,7 @@ def move(fname, target):
 
 
 def parse_coseq(f, neighbours=100):
-    if isinstance(f, (str, str)):
+    if isinstance(f, (Path, str)):
         f = open(f)
     
     prev = ""
@@ -46,11 +51,14 @@ def parse_coseq(f, neighbours=100):
 
     return db,rdb
 
-coseqdb, coseqrdb = parse_coseq(os.path.join(drc, "..", "resources", "coseq"))   # coseq length = 10
+
+RESOURCES = files('focus_tools.resources')
+coseqdb, coseqrdb = parse_coseq(RESOURCES / "coseq")   # coseq length = 10
 
 
 def uniquify_list(lst):
     return list(set(lst))
+
 
 def uniquify_invert_dict(d):
     uniq_map = {}
@@ -66,6 +74,7 @@ def uniquify_invert_dict(d):
     
     return uniq_map
 
+
 def invert_dict(d):
     inv_map = {}
     for key, values in d.items():
@@ -73,6 +82,7 @@ def invert_dict(d):
             inv_map[val] = inv_map.get(val, [])
             inv_map[val].append(key)
     return inv_map
+
 
 def section(f, intro="F", key=None):
     if isinstance(f, (str, str)):
@@ -137,6 +147,7 @@ def coseq_reduce(lines):
         d[key] = seq
     return d
 
+
 def get_coseq(fn):
     if isinstance(fn, list) and len(fn) == 1:
         fn = fn[0]
@@ -153,6 +164,7 @@ def get_coseq(fn):
     
     coseq = coseq_reduce(lines)
     return coseq
+
 
 def coseq_cmp(d, coseqdb):
     di = uniquify_invert_dict(d)
@@ -184,6 +196,7 @@ def coseq_cmp(d, coseqdb):
     
     return dcounts, dmap
 
+
 def fo2hist(f):
     d = get_coseq(f)
 
@@ -200,6 +213,7 @@ def fo2hist(f):
         print("{:6} {:10d} {:6.3f} {:7d}  {}".format(key, count, float(count)/total, len(d[key]), dmap.get(key, "-")))
     print(f"Total: {total}")
     print()
+
 
 def fo2strudat(f, fout=None, unique_only=True):
     lines = section(f, key="Framework")
@@ -219,6 +233,7 @@ def fo2strudat(f, fout=None, unique_only=True):
     else:
         for line in lines:
             print(line.split(None, 1)[0], file=fout)
+
 
 def get_R_from_dls76_out():
     f = open("dls76.out")
@@ -281,7 +296,7 @@ def dlsall(threshold=0.01, refine_cell=False):
         pydls.dls76(args=["dlsinp"])
         rval = get_R_from_dls76_out()
         marker  = "**" if rval < threshold else "  \n"
-        print(f"{key:10s} {rval:.4f} {marker}", end=' ')
+        print(f"{key:10s} {rval:.4f} {marker}", end='')
 
         if rval < threshold:
             pykriber.strudat2cif(args=["addo"], keys=key, verbose=False)
