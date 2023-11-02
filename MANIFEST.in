@@ -1,4 +1,4 @@
-recursive-include focus_package/resources *
-recursive-include focus_package/bin_linux *
-recursive-include focus_package/bin_windows *
-recursive-include focus_package/bin_osx *
+recursive-include focus_tools/resources *
+recursive-include focus_tools/bin_linux *
+recursive-include focus_tools/bin_windows *
+recursive-include focus_tools/bin_osx *
