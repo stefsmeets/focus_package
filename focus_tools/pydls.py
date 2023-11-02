@@ -1,10 +1,16 @@
 import os
 import sys
 import shutil
+from pathlib import Path
 
 import subprocess as sp
 
-drc = os.path.abspath(os.path.dirname( __file__ )) # get path of program
+import platform
+if sys.version_info < (3, 10):
+    from importlib_resources import files
+else:
+    from importlib.resources import files
+
 
 filemap = {
     "fort.7"  : "dls76.inp",
@@ -14,26 +20,37 @@ filemap = {
     "fort.12" : "dls76.out" }
 
 def clean():
-    fort = ["fort.7", "fort.8", "fort.10", "fort.11", "fort.12"]
-    for f in fort:
-        if os.path.exists(f):
-            os.remove(f)
+    fort_filenames = ["fort.7", "fort.8", "fort.10", "fort.11", "fort.12"]
+    for filename in fort_filenames:
+        if Path(filename).exists():
+            os.remove(filename)
 
 def move_files():
-    fort = ["fort.8", "fort.11", "fort.12"]
-    for f in fort:
-        target = filemap[f]
-        if os.path.exists(target):
+    fort_filenames = ["fort.8", "fort.11", "fort.12"]
+    for filename in fort_filenames:
+        target = filemap[filename]
+        if Path(target).exists():
             os.remove(target)
-        if os.path.exists(f):
-            os.rename(f, target)
+        if Path(filename).exists():
+            os.rename(filename, target)
 
 def dls76(args=[]):
-    spgr_dat  = os.path.join(drc, "..", "resources", "spgr.dat")
+    sysname = platform.system()
 
-    dls76_exe = '_dls76.x'
+    if sysname == 'Linux':
+        bin_dir = files('focus_tools.bin_linux')
+    elif sysname == 'Darwin':
+        bin_dir = files('focus_tools.bin_osx')
+    elif sysname == 'Windows':
+        bin_dir = files('focus_tools.bin_windows')
+    else:
+        raise RuntimeError(f'Unknown platform: {sysname}')
 
-    if not os.path.exists(spgr_dat):
+    dls76_exe = bin_dir / '_dls76.x'
+
+    spgr_dat  = files('focus_tools.resources') / "spgr.dat"
+
+    if not Path(spgr_dat).exists():
         print("Cannot find", spgr_dat)
         sys.exit()
 
@@ -49,12 +66,12 @@ def dls76(args=[]):
     except IndexError:
         out = "dls76.out"
 
-    if not os.path.exists(inp):
+    if not Path(inp).exists():
         print("Cannot find", inp)
         sys.exit()
 
-    inp = os.path.abspath(inp)
-    out = os.path.abspath(out)
+    inp = Path(inp).absolute()
+    out = Path(out).absolute()
 
     shutil.copyfile(inp,      "fort.7")
     shutil.copyfile(spgr_dat, "fort.10")
@@ -64,9 +81,11 @@ def dls76(args=[]):
     move_files()
     clean()
 
+
 def dls76_entry():
     args = sys.argv[1:]
     dls76(args)
+
 
 if __name__ == '__main__':
     dls76_entry_point()
